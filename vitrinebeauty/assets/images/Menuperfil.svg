@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19.6" height="31" viewBox="0 0 19.6 31">
+  <g id="Grupo_174" data-name="Grupo 174" transform="translate(-332.7 -798.5)">
+    <g id="Grupo_125" data-name="Grupo 125" transform="translate(0 -8.5)">
+      <path id="Caminho_713" data-name="Caminho 713" d="M1869.206,713.252a9.8,9.8,0,1,0,9.8,9.8,9.811,9.811,0,0,0-9.8-9.8Zm0,18.748a8.948,8.948,0,1,1,8.948-8.948,8.957,8.957,0,0,1-8.948,8.948Zm0,0" transform="translate(-1526.706 93.748)" fill="#260633"/>
+      <path id="Caminho_714" data-name="Caminho 714" d="M1944.945,889.252a5.545,5.545,0,0,0-5.539,5.539.426.426,0,0,0,.852,0,4.687,4.687,0,1,1,9.374,0,.426.426,0,0,0,.852,0,5.546,5.546,0,0,0-5.539-5.539Zm0,0" transform="translate(-1602.445 -72.878)" fill="#260633"/>
+      <path id="Caminho_715" data-name="Caminho 715" d="M1990.389,761.252a2.983,2.983,0,1,0,2.983,2.983,2.986,2.986,0,0,0-2.983-2.983Zm0,5.113a2.13,2.13,0,1,1,2.13-2.13,2.134,2.134,0,0,1-2.13,2.13Zm0,0" transform="translate(-1647.889 48.304)" fill="#260633"/>
+    </g>
+    <text id="Perfil" transform="translate(343 827.5)" fill="#1e0429" font-size="7" font-family="SegoeUI, Segoe UI" letter-spacing="0.032em"><tspan x="-8.228" y="0">Perfil</tspan></text>
+  </g>
+</svg>

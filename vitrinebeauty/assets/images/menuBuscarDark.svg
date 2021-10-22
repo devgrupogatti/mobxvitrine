@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="31.5" viewBox="0 0 22 31.5">
+  <g id="Grupo_128" data-name="Grupo 128" transform="translate(-136 -806.5)">
+    <g id="Grupo_123" data-name="Grupo 123" transform="translate(-621.094 48.119)">
+      <path id="Caminho_701" data-name="Caminho 701" d="M778.006,777.389l-5.191-5.108a8.2,8.2,0,0,0,2.194-5.577,8.458,8.458,0,1,0-8.455,8.323,8.514,8.514,0,0,0,5.323-1.859l5.209,5.126a.66.66,0,0,0,.92,0,.631.631,0,0,0,0-.9Zm-11.452-3.644a7.043,7.043,0,1,1,7.154-7.041,7.1,7.1,0,0,1-7.154,7.041Zm0,0" fill="#fff" fill-rule="evenodd"/>
+    </g>
+    <text id="Buscar" transform="translate(147 836)" fill="#fff" font-size="7" font-family="SegoeUI, Segoe UI" letter-spacing="0.032em"><tspan x="-10.646" y="0">Buscar</tspan></text>
+  </g>
+</svg>

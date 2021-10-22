@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22.179" height="31.5" viewBox="0 0 22.179 31.5">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_163" data-name="Retângulo 163" width="22.179" height="20.1" fill="#260633"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_171" data-name="Grupo 171" transform="translate(-37.706 -798)">
+    <g id="Grupo_122" data-name="Grupo 122" transform="translate(-1021.635 -517.203)">
+      <g id="Grupo_121" data-name="Grupo 121" transform="translate(1059.341 1315.203)">
+        <g id="Grupo_120" data-name="Grupo 120" transform="translate(0 0)" clip-path="url(#clip-path)">
+          <path id="Caminho_699" data-name="Caminho 699" d="M1081.2,1324.272l-10.474-7.669a.575.575,0,0,0-.679,0l-10.474,7.669a.574.574,0,0,0,.679.927l10.135-7.421,10.135,7.421a.574.574,0,0,0,.678-.927Zm0,0" transform="translate(-1059.34 -1316.138)" fill="#260633"/>
+        </g>
+      </g>
+      <path id="Caminho_700" data-name="Caminho 700" d="M1118.331,1470.05a.574.574,0,0,0-.574.574v9.139h-4.593v-4.988a2.871,2.871,0,1,0-5.741,0v4.988h-4.593v-9.139a.574.574,0,1,0-1.148,0v9.713a.574.574,0,0,0,.574.574H1108a.574.574,0,0,0,.572-.529c0-.014,0-.028,0-.045v-5.562a1.723,1.723,0,1,1,3.445,0v5.562c0,.016,0,.031,0,.044a.574.574,0,0,0,.572.53h5.741a.574.574,0,0,0,.574-.574v-9.713a.574.574,0,0,0-.574-.574Zm0,0" transform="translate(-39.903 -145.656)" fill="#260633"/>
+    </g>
+    <text id="Início" transform="translate(49 827.5)" fill="#1e0429" font-size="7" font-family="SegoeUI, Segoe UI" letter-spacing="0.032em"><tspan x="-8.835" y="0">Início</tspan></text>
+  </g>
+</svg>
