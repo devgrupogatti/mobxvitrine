@@ -7,6 +7,7 @@ import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/provider/autenticacao.dart';
 import 'package:vitrinebeauty/provider/provider_vitrine.dart';
 import 'package:vitrinebeauty/provider/requisicao_profissionais.dart';
+import 'package:vitrinebeauty/screen/vb_central_ajuda.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/view/cadastro.dart';
 import 'package:vitrinebeauty/view/login.dart';
@@ -61,6 +62,7 @@ class VitrineBeauty extends StatelessWidget {
           AppRoutes.LOGIN: (ctx) => Login(),
           AppRoutes.CADASTRO: (ctx) => Cadastro(),
           AppRoutes.VITRINEBEAUTY: (ctx) => VitrineBeauty(),
+          AppRoutes.AJUDA: (ctx) => CentralAjuda(),
         },
         // RecuperarSenha(),
       ),

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 
 class CabecalhoInicio extends StatefulWidget {
@@ -53,10 +54,15 @@ class _CabecalhoInicioState extends State<CabecalhoInicio> {
                 ),
               ),
               Icon(Icons.notification_important_rounded),
-              SvgPicture.asset(
-                duvidaIcon,
-                width: larguraIcone * 0.2,
-                height: alturaIcone * 0.3,
+              IconButton(
+                icon: SvgPicture.asset(
+                  duvidaIcon,
+                  width: larguraIcone * 0.2,
+                  height: alturaIcone * 0.3,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(AppRoutes.AJUDA);
+                },
               ),
             ],
           ),

@@ -97,7 +97,7 @@ class _VBTabScrerenState extends State<VBTabScreren> {
           _selectedScreenIndex < 3 ? Colors.white : HexColor('#260633'),
       body: SingleChildScrollView(
           controller: _controller,
-          child: _selectedScreenIndex < 2
+          child: _selectedScreenIndex < 3
               ? _screens[_selectedScreenIndex]['screen']
               : Padding(
                   padding: EdgeInsets.only(
