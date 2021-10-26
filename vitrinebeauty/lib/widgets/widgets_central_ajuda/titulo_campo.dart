@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class TituloCampo extends StatelessWidget {
   final double altura;
   final String campo;
-  const TituloCampo(this.altura, this.campo, {Key? key}) : super(key: key);
+  final int tamanhoFonte;
+  const TituloCampo(this.altura, this.campo, {Key? key})
+      : tamanhoFonte = 0,
+        super(key: key);
+  const TituloCampo.edit(this.altura, this.campo, this.tamanhoFonte, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class TituloCampo extends StatelessWidget {
           campo,
           style: const TextStyle(
             color: Colors.black,
-            fontSize: 14,
+            fontSize: 13,
             fontStyle: FontStyle.normal,
           ),
         ),

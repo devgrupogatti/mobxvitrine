@@ -15,12 +15,11 @@ class Titulo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            // ignore: prefer_const_constructors
-            Text(
+            const Text(
               'CENTRAL',
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
             ),
-            Text(
+            const Text(
               'DE AJUDA',
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
             ),

@@ -7,9 +7,9 @@ import 'package:flutter/rendering.dart';
 import 'package:vitrinebeauty/model/lista_profissionais.dart';
 import 'package:vitrinebeauty/model/profissionais_pesquisados.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
-import 'package:vitrinebeauty/widgets/cab_inicio.dart';
-import 'package:vitrinebeauty/widgets/carrosel_imagem.dart';
-import 'package:vitrinebeauty/widgets/inicio_page_categorias.dart';
+import 'package:vitrinebeauty/widgets/widgets_inicio/cab_inicio.dart';
+import 'package:vitrinebeauty/widgets/widgets_inicio/carrosel_imagem.dart';
+import 'package:vitrinebeauty/widgets/widgets_inicio/inicio_page_categorias.dart';
 import 'package:vitrinebeauty/widgets/pesquisa.dart';
 
 class VitrineInicio extends StatefulWidget {

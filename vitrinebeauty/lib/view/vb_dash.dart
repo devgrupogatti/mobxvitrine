@@ -4,14 +4,16 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+//import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vitrinebeauty/screen/agenda_vb.dart';
 import 'package:vitrinebeauty/screen/busca_vb.dart';
+import 'package:vitrinebeauty/screen/editar_perfil.dart';
 import 'package:vitrinebeauty/screen/perfil_vb.dart';
 import 'package:vitrinebeauty/screen/vb_inicio.dart';
+import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
-import 'package:vitrinebeauty/widgets/perfil_vb_apresentacao.dart';
+import 'package:vitrinebeauty/widgets/widgets_perfil/perfil_vb_apresentacao.dart';
 
 class VBTabScreren extends StatefulWidget {
   //const VBTabScreren({ Key? key }) : super(key: key);
@@ -32,6 +34,7 @@ class _VBTabScrerenState extends State<VBTabScreren> {
     {'screen': BuscaVB()},
     {'screen': AgendaBeauty()},
     {'screen': PerfilVB()},
+    {'screen': EditarPerfil()}
   ];
 
   final String menuInicio = 'assets/images/Menuinicio.svg';
@@ -126,13 +129,14 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                               //   dashGapColor: Colors.grey.shade500,
                               // ),
                               _itemMenu(userPerfil, 'Editar perfil',
-                                  larguraIcone, alturaIcone, 0),
+                                  larguraIcone, alturaIcone, 4),
                               _itemMenu(sinoPerfil, 'Notificações',
                                   larguraIcone, alturaIcone, 1),
                               _itemMenu(agendaPerfil, 'Agenda', larguraIcone,
                                   alturaIcone, 2),
                               _itemMenu(pesquisaPerfil, 'Histórico',
                                   larguraIcone, alturaIcone, 3),
+
                               DottedLine(
                                 dashLength: 2,
                                 dashColor: Colors.transparent,
@@ -148,6 +152,7 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                                   larguraIcone, alturaIcone),
                               _itemSubmenu(sairIconPerfil, 'Sair', larguraIcone,
                                   alturaIcone),
+
                               DottedLine(
                                 dashLength: 2,
                                 dashColor: Colors.transparent,
@@ -283,6 +288,10 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                           case 2:
                             _selectedScreenPreviousIndex = _selectedScreenIndex;
                             _selectedScreenIndex = indice;
+                            break;
+                          default:
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.EDITARPERFIL);
                             break;
                         }
                       });

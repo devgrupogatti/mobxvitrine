@@ -40,7 +40,9 @@ class _CabecalhoInicioState extends State<CabecalhoInicio> {
                 color: HexColor('#1800ff'),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(AppRoutes.ENDERECOCLIENTE);
+                },
                 child: Container(
                   width: largura * 0.5,
                   child: Text(
