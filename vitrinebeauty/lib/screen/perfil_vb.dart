@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:vitrinebeauty/screen/agenda_vb.dart';
+import 'package:vitrinebeauty/view/agenda_vb.dart';
 import 'package:vitrinebeauty/screen/busca_vb.dart';
 import 'package:vitrinebeauty/screen/vb_inicio.dart';
 import 'package:vitrinebeauty/widgets/widgets_perfil/perfil_vb_apresentacao.dart';

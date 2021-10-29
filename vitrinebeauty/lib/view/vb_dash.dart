@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 //import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:vitrinebeauty/screen/agenda_vb.dart';
+import 'package:vitrinebeauty/view/agenda_vb.dart';
 import 'package:vitrinebeauty/screen/busca_vb.dart';
 import 'package:vitrinebeauty/screen/editar_perfil.dart';
 import 'package:vitrinebeauty/screen/perfil_vb.dart';
 import 'package:vitrinebeauty/screen/vb_inicio.dart';
+import 'package:vitrinebeauty/screen/vb_tela_configuracoes.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_perfil/perfil_vb_apresentacao.dart';
@@ -129,13 +130,13 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                               //   dashGapColor: Colors.grey.shade500,
                               // ),
                               _itemMenu(userPerfil, 'Editar perfil',
-                                  larguraIcone, alturaIcone, 4),
+                                  larguraIcone, alturaIcone, 3),
                               _itemMenu(sinoPerfil, 'Notificações',
                                   larguraIcone, alturaIcone, 1),
                               _itemMenu(agendaPerfil, 'Agenda', larguraIcone,
                                   alturaIcone, 2),
                               _itemMenu(pesquisaPerfil, 'Histórico',
-                                  larguraIcone, alturaIcone, 3),
+                                  larguraIcone, alturaIcone, 4),
 
                               DottedLine(
                                 dashLength: 2,
@@ -146,12 +147,30 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                                 height: alturaPadding * 0.3,
                               ),
 
-                              _itemSubmenu(ajudaPerfil, 'Ajuda', larguraIcone,
-                                  alturaIcone),
-                              _itemSubmenu(configuracoesPerfil, 'Configurações',
-                                  larguraIcone, alturaIcone),
-                              _itemSubmenu(sairIconPerfil, 'Sair', larguraIcone,
-                                  alturaIcone),
+                              _itemSubmenu(
+                                  ajudaPerfil,
+                                  'Ajuda',
+                                  larguraIcone,
+                                  alturaIcone,
+                                  AppRoutes.AJUDA,
+                                  alturaPadding,
+                                  larguraPadding),
+                              _itemSubmenu(
+                                  configuracoesPerfil,
+                                  'Configurações',
+                                  larguraIcone,
+                                  alturaIcone,
+                                  AppRoutes.CONFIGURACOES,
+                                  alturaPadding,
+                                  larguraPadding),
+                              _itemSubmenu(
+                                  sairIconPerfil,
+                                  'Sair',
+                                  larguraIcone,
+                                  alturaIcone,
+                                  'shulambs',
+                                  alturaPadding,
+                                  larguraPadding),
 
                               DottedLine(
                                 dashLength: 2,
@@ -245,8 +264,13 @@ class _VBTabScrerenState extends State<VBTabScreren> {
     );
   }
 
-  Container _itemMenu(String icone, String titulo, double larguraIcone,
-      double alturaIcone, int indice) {
+  Container _itemMenu(
+    String icone,
+    String titulo,
+    double larguraIcone,
+    double alturaIcone,
+    int indice,
+  ) {
     return Container(
       child: Column(
         children: [
@@ -289,6 +313,15 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                             _selectedScreenPreviousIndex = _selectedScreenIndex;
                             _selectedScreenIndex = indice;
                             break;
+                          case 3:
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.EDITARPERFIL);
+                            break;
+
+                          case 4:
+                            Navigator.of(context)
+                                .pushNamed(AppRoutes.HISTORICO);
+                            break;
                           default:
                             Navigator.of(context)
                                 .pushNamed(AppRoutes.EDITARPERFIL);
@@ -313,7 +346,13 @@ class _VBTabScrerenState extends State<VBTabScreren> {
   }
 
   Container _itemSubmenu(
-      String icone, String titulo, double larguraIcone, double alturaIcone) {
+      String icone,
+      String titulo,
+      double larguraIcone,
+      double alturaIcone,
+      String rota,
+      double alturaPadding,
+      double larguraPadding) {
     return Container(
       child: Column(
         children: [
@@ -344,7 +383,9 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                 fit: BoxFit.cover,
               ),
               //shape: ListTileTheme.shape(),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed(rota);
+              },
             ),
           ),
           Divider(

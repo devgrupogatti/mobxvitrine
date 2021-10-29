@@ -8,9 +8,11 @@ import 'package:vitrinebeauty/provider/autenticacao.dart';
 import 'package:vitrinebeauty/provider/provider_vitrine.dart';
 import 'package:vitrinebeauty/provider/requisicao_profissionais.dart';
 import 'package:vitrinebeauty/screen/editar_perfil.dart';
+import 'package:vitrinebeauty/screen/historico.dart';
 import 'package:vitrinebeauty/screen/mudar_endereco.dart';
 import 'package:vitrinebeauty/screen/vb_central_ajuda.dart';
 import 'package:vitrinebeauty/screen/vb_endereco_cliente.dart';
+import 'package:vitrinebeauty/screen/vb_tela_configuracoes.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/view/cadastro.dart';
 import 'package:vitrinebeauty/view/login.dart';
@@ -69,6 +71,8 @@ class VitrineBeauty extends StatelessWidget {
           AppRoutes.EDITARPERFIL: (ctx) => const EditarPerfil(),
           AppRoutes.ENDERECOCLIENTE: (ctx) => const EnderecoCliente(),
           AppRoutes.MUDARENDERECO: (ctx) => const MudarEndereco(),
+          AppRoutes.CONFIGURACOES: (ctx) => const TelaConfiguracoes(),
+          AppRoutes.HISTORICO: (ctx) => const Historico(),
         },
         // RecuperarSenha(),
       ),

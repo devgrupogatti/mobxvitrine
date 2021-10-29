@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:vitrinebeauty/utils/adaptative_text_size.dart';
+
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_central_ajuda/mensagem_tela.dart';
 import 'package:vitrinebeauty/widgets/widgets_central_ajuda/titulo.dart';
