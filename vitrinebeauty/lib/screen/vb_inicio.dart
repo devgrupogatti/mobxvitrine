@@ -80,6 +80,7 @@ class _VitrineInicioState extends State<VitrineInicio> {
                   'Categorias',
                   style: TextStyle(
                     fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

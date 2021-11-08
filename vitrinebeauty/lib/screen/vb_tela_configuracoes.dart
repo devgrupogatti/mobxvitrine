@@ -69,7 +69,7 @@ class _TelaConfiguracoesState extends State<TelaConfiguracoes> {
                   _itemSubmenu('Gerenciar notificações', larguraIcone,
                       alturaIcone, 'shulambs', alturaPadding, larguraPadding),
                   _itemSubmenu('Alterar senha', larguraIcone, alturaIcone,
-                      'shulambs', alturaPadding, larguraPadding),
+                      AppRoutes.ALTERARSENHA, alturaPadding, larguraPadding),
                   _indiceSair('Sair', larguraIcone, alturaIcone, 'shulambs',
                       alturaPadding, larguraPadding),
                   DottedLine(
@@ -119,7 +119,7 @@ class _TelaConfiguracoesState extends State<TelaConfiguracoes> {
                 //shape: ListTileTheme.shape(),
                 onTap: () {
                   if (rota != 'shulambs') {
-                    Navigator.of(context).pushNamed(AppRoutes.CONFIGURACOES);
+                    Navigator.of(context).pushNamed(rota);
                   }
                 },
               ),

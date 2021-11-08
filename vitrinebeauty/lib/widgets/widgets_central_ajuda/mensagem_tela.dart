@@ -12,18 +12,12 @@ class MensagemTela extends StatelessWidget {
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           Text(
-            'Olá! Esse espaço é especificamente para nós podermos te',
+            'Olá! Esse espaço é especificamente para nós podermos te ouvir sobre eventuais situações que não te agradaram.',
             style: TextStyle(
               fontSize:
                   const AdaptiveTextSize().getadaptiveTextSize(context, 12),
             ),
-          ),
-          Text(
-            'ouvir sobre eventuais situações que não te agradaram.',
-            style: TextStyle(
-              fontSize:
-                  const AdaptiveTextSize().getadaptiveTextSize(context, 12),
-            ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

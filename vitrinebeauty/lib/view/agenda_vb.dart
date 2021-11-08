@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/controller/agenda_controller.dart';
 import 'package:vitrinebeauty/model/model_card_agenda.dart';
+import 'package:vitrinebeauty/screen/detalhes_agenda.dart';
+import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_agenda/card_agenda.dart';
 
@@ -49,7 +51,18 @@ class _AgendaBeautyState extends State<AgendaBeauty> {
                     itemCount: agendas.length,
                     itemBuilder: (ctx, index) {
                       final card = agendas[index];
-                      return CardAgenda(card);
+                      return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return DetalheAgenda(card);
+                                },
+                              ),
+                            );
+                          },
+                          child: CardAgenda(card, 1));
                     }),
               )
             ],

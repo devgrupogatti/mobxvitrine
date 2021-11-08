@@ -9,15 +9,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:vitrinebeauty/view/agenda_vb.dart';
 import 'package:vitrinebeauty/screen/busca_vb.dart';
 import 'package:vitrinebeauty/screen/editar_perfil.dart';
-import 'package:vitrinebeauty/screen/perfil_vb.dart';
 import 'package:vitrinebeauty/screen/vb_inicio.dart';
-import 'package:vitrinebeauty/screen/vb_tela_configuracoes.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_perfil/perfil_vb_apresentacao.dart';
 
 class VBTabScreren extends StatefulWidget {
-  //const VBTabScreren({ Key? key }) : super(key: key);
+  const VBTabScreren({Key? key}) : super(key: key);
 
   @override
   State<VBTabScreren> createState() => _VBTabScrerenState();
@@ -34,7 +32,7 @@ class _VBTabScrerenState extends State<VBTabScreren> {
     {'screen': VitrineInicio()},
     {'screen': BuscaVB()},
     {'screen': AgendaBeauty()},
-    {'screen': PerfilVB()},
+    // {'screen': PerfilVB()},
     {'screen': EditarPerfil()}
   ];
 
@@ -42,7 +40,7 @@ class _VBTabScrerenState extends State<VBTabScreren> {
   final String menuBusca = 'assets/images/Menubuscar.svg';
   final String menuAgenda = 'assets/images/Menuagenda.svg';
   final String menuPerfil = 'assets/images/Menuperfil.svg';
-  final String menuInicioDark = 'assets/images/Menuinicio.svg';
+  final String menuInicioDark = 'assets/images/menuInicioDark.svg';
   final String menuBuscaDark = 'assets/images/menuBuscarDark.svg';
   final String menuAgendaDark = 'assets/images/menuAgendaDark.svg';
   final String menuPerfilDark = 'assets/images/menuPerfilDark.svg';
@@ -107,7 +105,7 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                   padding: EdgeInsets.only(
                     left: larguraPadding * 0.1,
                     right: larguraPadding * 0.1,
-                    top: larguraPadding * 0.6,
+                    top: larguraPadding * 0.4,
                     bottom: larguraPadding * 0.1,
                   ),
                   child: Column(
@@ -115,8 +113,29 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        alignment: Alignment.center,
-                        child: ApresentacaoPerfil(),
+                        alignment: Alignment.centerLeft,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            elevation: 7.0,
+                            shape: const CircleBorder(),
+                            minimumSize: const Size(50, 50),
+                          ),
+                          onPressed: () {
+                            _backScreen();
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Colors.pink[300],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: alturaPadding * 0.1),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: ApresentacaoPerfil(),
+                        ),
                       ),
                       Container(
                         child: Padding(
@@ -187,43 +206,43 @@ class _VBTabScrerenState extends State<VBTabScreren> {
           // VitrineInicio(),
           ),
       //floatingActionButton: ,
-      floatingActionButton: _selectedScreenIndex == 3
-          ? AnimatedOpacity(
-              child: Column(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 20,
-                    ),
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        // Navigator.of(context).pop();
-                        _backScreen();
-                      },
-                      backgroundColor: HexColor('#ffffff'),
-                      child: Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        color: HexColor('#ff1493'),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'voltar',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
-                ],
-              ),
-              duration: Duration(milliseconds: 100),
-              opacity: _fabIsVisible ? 1 : 0,
-            )
-          : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      // floatingActionButton: _selectedScreenIndex == 3
+      //     ? AnimatedOpacity(
+      //         child: Column(
+      //           // ignore: prefer_const_literals_to_create_immutables
+      //           children: [
+      //             Padding(
+      //               padding: EdgeInsets.symmetric(
+      //                 horizontal: 40,
+      //                 vertical: 20,
+      //               ),
+      //               child: FloatingActionButton(
+      //                 onPressed: () {
+      //                   // Navigator.of(context).pop();
+      //                   _backScreen();
+      //                 },
+      //                 backgroundColor: HexColor('#ffffff'),
+      //                 child: Icon(
+      //                   Icons.arrow_back_ios_new_rounded,
+      //                   color: HexColor('#ff1493'),
+      //                 ),
+      //               ),
+      //             ),
+      //             Text(
+      //               'voltar',
+      //               style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 16,
+      //                 fontStyle: FontStyle.normal,
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //         duration: Duration(milliseconds: 100),
+      //         opacity: _fabIsVisible ? 1 : 0,
+      //       )
+      //     : null,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: <BoxShadow>[
@@ -429,3 +448,4 @@ SizedBox(
     ],
   )
 */
+//Usar o Transform é bastante interessante mas preste atenção nas alterações da ação do aplicativo ao usa-lo

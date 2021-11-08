@@ -32,8 +32,9 @@ class _LoginState extends State<Login> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: Column(
+          // ignore: prefer_const_literals_to_create_immutables
           children: [
-            Text('Ocorreu um erro!'),
+            const Text('Ocorreu um erro!'),
             // Text(' latitude : ${latitude}'),
             // Text('longitude : ${longitude}'),
           ],

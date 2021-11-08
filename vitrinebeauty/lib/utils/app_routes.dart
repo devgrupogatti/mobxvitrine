@@ -11,4 +11,7 @@ class AppRoutes {
   static const MUDARENDERECO = '/tela-mudar-endereco-cliente';
   static const CONFIGURACOES = '/tela-configuracoes';
   static const HISTORICO = '/tela-historico';
+  static const ALTERARSENHA = '/tela-alterar-senha';
+  static const DETALHEAGENDA = 'tela-detalhe-agenda';
+  static const BUSCACATEGORIA = '/tela-de-busca-categoria';
 }

@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/controller/historico_controller.dart';
 import 'package:vitrinebeauty/model/model_card_historico.dart';
+import 'package:vitrinebeauty/screen/detalhes_historico.dart';
 import 'package:vitrinebeauty/widgets/widgets_historico/card_historico.dart';
 
 class Historico extends StatefulWidget {
@@ -63,7 +66,18 @@ class _HistoricoState extends State<Historico> {
                       itemCount: lista.length,
                       itemBuilder: (ctx, index) {
                         final card = lista[index];
-                        return CardDoHistorico(card);
+                        return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return DetalhesHistorico(card);
+                                  },
+                                ),
+                              );
+                            },
+                            child: CardDoHistorico(card));
                       }),
                 ),
               ],

@@ -1,4 +1,4 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe, prefer_const_constructors
+// ignore_for_file: import_of_legacy_library_into_null_safe, prefer_const_constructors, must_be_immutable, use_key_in_widget_constructors, avoid_unnecessary_containers
 
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';

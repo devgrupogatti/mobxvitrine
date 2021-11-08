@@ -1,5 +1,6 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
-import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_central_ajuda/titulo_campo.dart';
 
@@ -14,9 +15,9 @@ class _MudarEnderecoState extends State<MudarEndereco> {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
-    double larguraIcone = largura * 0.5;
+    //double larguraIcone = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
-    double alturaIcone = altura * 0.1;
+    //double alturaIcone = altura * 0.1;
     double alturaPadding = altura * 0.4;
     return Scaffold(
       body: Padding(

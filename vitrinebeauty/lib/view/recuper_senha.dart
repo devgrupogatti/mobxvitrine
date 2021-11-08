@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unnecessary_new, unnecessary_const
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unnecessary_new, unnecessary_const, avoid_print, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,23 +58,23 @@ class _RecuperarSenhaState extends State<RecuperarSenha> {
     super.initState();
   }
 
-  void _showErrorDialog(String msg) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('Ocorreu um erro!'),
-        content: Text(msg),
-        actions: <Widget>[
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('Fechar'),
-          ),
-        ],
-      ),
-    );
-  }
+  // void _showErrorDialog(String msg) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (ctx) => AlertDialog(
+  //       title: Text('Ocorreu um erro!'),
+  //       content: Text(msg),
+  //       actions: <Widget>[
+  //         ElevatedButton(
+  //           onPressed: () {
+  //             Navigator.of(context).pop();
+  //           },
+  //           child: Text('Fechar'),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   void _showConfirmDialog(String msg) {
     showDialog(

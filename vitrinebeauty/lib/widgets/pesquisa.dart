@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 
 class PesquisaProfissional extends StatefulWidget {
-  //const PesquisaProfissional({ Key? key }) : super(key: key);
+  const PesquisaProfissional({Key? key}) : super(key: key);
 
   @override
   _PesquisaProfissionalState createState() => _PesquisaProfissionalState();
@@ -26,7 +26,6 @@ class _PesquisaProfissionalState extends State<PesquisaProfissional> {
         child: TextFormField(
           decoration: InputDecoration(
             labelText: 'Buscar por profissional ou serviço',
-            // ignore: prefer_const_constructors
             labelStyle: TextStyle(
               fontStyle: FontStyle.italic,
               //fontSize: 15,

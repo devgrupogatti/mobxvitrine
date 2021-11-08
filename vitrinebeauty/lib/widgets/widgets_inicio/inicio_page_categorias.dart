@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, import_of_legacy_library_into_null_safe, unused_import
 
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CategoriasHome extends StatefulWidget {
-  //const CategoriasHome({ Key? key }) : super(key: key);
+  const CategoriasHome({Key? key}) : super(key: key);
 
   @override
   _CategoriasHomeState createState() => _CategoriasHomeState();
@@ -58,10 +58,10 @@ class _CategoriasHomeState extends State<CategoriasHome> {
 
   @override
   Widget build(BuildContext context) {
-    double altura = MediaQuery.of(context).size.height;
-    double alturaPadding = altura * 0.4;
+    // double altura = MediaQuery.of(context).size.height;
+    // double alturaPadding = altura * 0.4;
     double largura = MediaQuery.of(context).size.width;
-    double larguraCategoria = largura * 0.5;
+    // double larguraCategoria = largura * 0.5;
 
     return Stack(
       children: [

@@ -7,6 +7,8 @@ import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/provider/autenticacao.dart';
 import 'package:vitrinebeauty/provider/provider_vitrine.dart';
 import 'package:vitrinebeauty/provider/requisicao_profissionais.dart';
+import 'package:vitrinebeauty/screen/alterar_senha.dart';
+import 'package:vitrinebeauty/screen/busca_categoria.dart';
 import 'package:vitrinebeauty/screen/editar_perfil.dart';
 import 'package:vitrinebeauty/screen/historico.dart';
 import 'package:vitrinebeauty/screen/mudar_endereco.dart';
@@ -73,6 +75,9 @@ class VitrineBeauty extends StatelessWidget {
           AppRoutes.MUDARENDERECO: (ctx) => const MudarEndereco(),
           AppRoutes.CONFIGURACOES: (ctx) => const TelaConfiguracoes(),
           AppRoutes.HISTORICO: (ctx) => const Historico(),
+          AppRoutes.ALTERARSENHA: (ctx) => const AlterarSenha(),
+          AppRoutes.BUSCACATEGORIA: (ctx) => const BuscaCategoria(),
+          // AppRoutes.DETALHEAGENDA: (ctx) => const DetalheAgenda(),
         },
         // RecuperarSenha(),
       ),

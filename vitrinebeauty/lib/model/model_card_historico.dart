@@ -1,6 +1,6 @@
 class ModelCardHistorico {
   String? id;
-  int? avaliacao;
+  double? avaliacao;
   String? data;
   String? hora;
   String? nomeCliente;

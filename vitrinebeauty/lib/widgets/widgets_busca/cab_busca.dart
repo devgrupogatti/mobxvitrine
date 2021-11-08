@@ -1,9 +1,11 @@
+// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 
 class CabBusca extends StatefulWidget {
-  const CabBusca({Key? key}) : super(key: key);
+  //const CabBusca({Key? key}) : super(key: key);
 
   @override
   _CabBuscaState createState() => _CabBuscaState();
@@ -13,7 +15,7 @@ class _CabBuscaState extends State<CabBusca> {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
-    double larguraIcone = largura * 0.5;
+    //double larguraIcone = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
     return Column(

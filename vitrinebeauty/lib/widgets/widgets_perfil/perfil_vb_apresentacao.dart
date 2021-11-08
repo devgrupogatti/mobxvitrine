@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_element, avoid_init_to_null
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_element, avoid_init_to_null, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'dart:io';
 
@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 
 class ApresentacaoPerfil extends StatefulWidget {
-  //  const ApresentacaoPerfil({ Key? key }) : super(key: key);
+  const ApresentacaoPerfil({Key? key}) : super(key: key);
 
   @override
   _ApresentacaoPerfilState createState() => _ApresentacaoPerfilState();
@@ -98,75 +98,86 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
-    double larguraIcone = largura * 0.5;
-    double larguraPadding = largura * 0.5;
+    // double larguraIcone = largura * 0.5;
+    // double larguraPadding = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
-    double alturaPadding = altura * 0.4;
+    // double alturaPadding = altura * 0.4;
     return Container(
-      width: largura * 0.95,
+      // width: largura * 0.95,
+      width: double.infinity,
       child: InkWell(
         onTap: () {},
         child: Column(
           children: [
-            Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: HexColor('#1800ff'), width: 6.0),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: imagem != null
-                        ? Image.file(
-                            imagem!,
-                            height: largura * 0.4,
-                            width: largura * 0.4,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.asset(
-                            'assets/images/cbimage.png',
-                            height: largura * 0.3,
-                            width: largura * 0.3,
-                            // scale: largura * 0.5,
-                            fit: BoxFit.cover,
-                          ),
-                  ),
-                ),
-                Positioned(
-                    left: 75,
-                    top: 75,
-                    width: 70,
-                    height: 70,
-                    child: IconButton(
-                      icon: Image.asset(
-                        'assets/images/editWelcomePic.png',
-                        width: 150,
-                        height: 150,
-                      ),
-                      iconSize: 70,
-                      onPressed: _acessarFoto,
-                    )
-                    /*Image.asset(
-                    'assets/images/editWelcomePic.png',
-                    width: 90,
-                    height: 90,
-                  ),*/
-
+            Container(
+              height: altura * 0.3,
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border:
+                          Border.all(color: HexColor('#1800ff'), width: 6.0),
+                      borderRadius: BorderRadius.circular(100),
                     ),
-              ],
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: imagem != null
+                          ? Image.file(
+                              imagem!,
+                              height: largura * 0.45,
+                              width: largura * 0.45,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              'assets/images/cbimage.png',
+                              height: largura * 0.45,
+                              width: largura * 0.45,
+                              // scale: largura * 0.5,
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                  ),
+                  Positioned(
+                      left: alturaIcone * 1.9,
+                      top: alturaIcone * 1.9,
+                      width: alturaIcone * 0.95,
+                      height: alturaIcone * 0.95,
+                      child: IconButton(
+                        icon: Image.asset(
+                          'assets/images/editWelcomePic.png',
+                          // width: 80,
+                          // height: 80,
+                          width: alturaIcone,
+                          height: alturaIcone,
+                          fit: BoxFit.cover,
+                        ),
+                        iconSize: alturaIcone,
+                        onPressed: _acessarFoto,
+                      )
+                      /*Image.asset(
+                      'assets/images/editWelcomePic.png',
+                      width: 90,
+                      height: 90,
+                    ),*/
+
+                      ),
+                ],
+              ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Container(
-                child: Text(
-                  // 'Olá, Pedro Silva',
-                  'Dev Silva !',
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+            Transform(
+              transform: Matrix4.translationValues(0.0, 20.0, 0.0),
+              child: Padding(
+                padding: EdgeInsets.only(top: alturaIcone * 0.4),
+                child: Container(
+                  child: Text(
+                    // 'Olá, Pedro Silva',
+                    'Dev Silva !',
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),

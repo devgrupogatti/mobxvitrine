@@ -9,12 +9,12 @@ class SlideTile extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final double top = this.activePage ? 50 : 150;
-    final double blur = this.activePage ? 30 : 0;
-    final double offset = this.activePage ? 20 : 0;
+    final double top = activePage ? 50 : 150;
+    final double blur = activePage ? 30 : 0;
+    final double offset = activePage ? 20 : 0;
 
     return AnimatedContainer(
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
       curve: Curves.easeOutQuint,
       margin: EdgeInsets.only(
         top: top,
@@ -23,8 +23,7 @@ class SlideTile extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        image:
-            DecorationImage(image: AssetImage(this.image), fit: BoxFit.cover),
+        image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
         boxShadow: [
           BoxShadow(
               color: Colors.black87,
