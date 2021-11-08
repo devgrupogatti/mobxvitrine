@@ -21,20 +21,12 @@ class _CardBuscaCategoriaState extends State<CardBuscaCategoria> {
     return Container(
       // width: larguraTotal * 0.65,
       // height: larguraTotal * 0.65,
-      child: InkWell(
-        onTap: () {
-          //Navigator.push()
-          //BuscaCategoria();
-          Navigator.of(context).pushNamed(AppRoutes.BUSCACATEGORIA);
-          //print('registrando click');
-        },
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          ),
-          child: widget.imagem,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
         ),
+        child: widget.imagem,
       ),
     );
   }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/widgets/widgets_busca/cab_busca.dart';
+import 'package:vitrinebeauty/widgets/widgets_inicio/cab_inicio.dart';
 
 class BuscaCategoria extends StatefulWidget {
   const BuscaCategoria({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: alturaPadding * 0.2,
+          vertical: alturaPadding * 0.1,
           horizontal: largura * 0.04,
         ),
         child: SingleChildScrollView(
@@ -27,7 +28,29 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
             child: Column(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                CabBusca(),
+                Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: alturaPadding * 0.04,
+                    ),
+                    child: CabecalhoInicio()),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      elevation: 7.0,
+                      shape: const CircleBorder(),
+                      minimumSize: const Size(40, 40),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Colors.pink[300],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

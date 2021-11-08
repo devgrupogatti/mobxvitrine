@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vitrinebeauty/screen/busca_categoria.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_busca/cab_busca.dart';
 import 'package:vitrinebeauty/widgets/widgets_busca/card_categorias_busca.dart';
@@ -100,7 +101,18 @@ class _BuscaVBState extends State<BuscaVB> {
                     mainAxisSpacing: 10,
                   ),
                   children: imagens.map((imagem) {
-                    return CardBuscaCategoria(imagem);
+                    return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return BuscaCategoria();
+                              },
+                            ),
+                          );
+                        },
+                        child: CardBuscaCategoria(imagem));
                   }).toList(),
                 ),
               ),
