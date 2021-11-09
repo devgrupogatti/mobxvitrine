@@ -2,7 +2,7 @@ class Profissionais {
   Profissionais();
   List<Map<String, String>> profissionais = [
     {
-      'titulo': 'Barbeatia AC',
+      'titulo': 'Barbearia AC',
       'subtitulo': '100 km',
       'imagem': '',
     },
