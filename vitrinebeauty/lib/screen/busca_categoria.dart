@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/model/lista_profissionais.dart';
+import 'package:vitrinebeauty/screen/perfil_profissional.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/pesquisa.dart';
 import 'package:vitrinebeauty/widgets/widgets_busca/cab_busca.dart';
@@ -96,7 +97,15 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
                       var profissional = profissionais[index];
                       return InkWell(
                         onTap: () {
-                          //Navigator.push(context, route)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PerfilProfissional(
+                                    profissional['titulo']);
+                              },
+                            ),
+                          );
                         },
                         child: Card(
                           shape: RoundedRectangleBorder(
