@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/controller/auth_or_dashboard.dart';
+import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
 import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/provider/autenticacao.dart';
 import 'package:vitrinebeauty/provider/provider_vitrine.dart';
@@ -56,6 +57,8 @@ class VitrineBeauty extends StatelessWidget {
           ),
         ),
         ChangeNotifierProvider(create: (context) => ReqProfissionais()),
+        ChangeNotifierProvider(
+            create: (context) => ProfissionaisBuscaController()),
       ],
       child: MaterialApp(
         title: 'Vitrine Teste Beauty',

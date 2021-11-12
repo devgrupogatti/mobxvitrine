@@ -4,8 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:vitrinebeauty/model/card_profissional.dart';
 import 'package:vitrinebeauty/model/lista_profissionais.dart';
-import 'package:vitrinebeauty/model/profissionais_pesquisados.dart';
+import 'package:vitrinebeauty/model/profissional.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_inicio/cab_inicio.dart';
 import 'package:vitrinebeauty/widgets/widgets_inicio/carrosel_imagem.dart';
@@ -42,7 +43,7 @@ class _VitrineInicioState extends State<VitrineInicio> {
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
     double alturaPadding = altura * 0.4;
-    List<Map<String, String>> profissionais = Profissionais().profissionais;
+    List<CardProfissional> profissionais = Profissionais().profissionais;
     return Column(
       children: [
         Column(
@@ -133,11 +134,11 @@ class _VitrineInicioState extends State<VitrineInicio> {
                                     color: Colors.white,
                                   )),
                               title: Text(
-                                '${profissional['titulo']}',
+                                '${profissional.titulo}',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               subtitle: Text(
-                                '${profissional['subtitulo']}',
+                                '${profissional.distancia}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 12),
                               ),

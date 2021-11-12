@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
+import 'package:vitrinebeauty/model/card_profissional.dart';
 import 'package:vitrinebeauty/model/lista_profissionais.dart';
+import 'package:vitrinebeauty/model/profissional.dart';
 import 'package:vitrinebeauty/screen/perfil_profissional.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/pesquisa.dart';
@@ -22,7 +25,8 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
     double larguraIcone = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaPadding = altura * 0.4;
-    List<Map<String, String>> profissionais = Profissionais().profissionais;
+    //List<Map<String, String>> profissionais = Profissionais().profissionais;
+    List<CardProfissional> profissionais = Profissionais().profissionais;
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
@@ -92,7 +96,7 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: profissionais.length,
+                    itemCount: profissionais.length, //profissionais.length,
                     itemBuilder: (context, index) {
                       var profissional = profissionais[index];
                       return InkWell(
@@ -101,8 +105,10 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return PerfilProfissional(
-                                    profissional['titulo']);
+                                // return PerfilProfissional(
+                                //     profissional['titulo']);
+                                //return PerfilProfissional(profissional);
+                                return PerfilProfissional(profissional.id);
                               },
                             ),
                           );
@@ -111,23 +117,41 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              maxRadius: larguraIcone * 0.2,
-                              backgroundColor: HexColor('#ffffff'),
-                              child: Image.asset(
-                                'assets/images/favicon.png',
-                                fit: BoxFit.fill,
+                          child: Container(
+                            width: alturaPadding * 0.5,
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                maxRadius: larguraIcone * 0.2,
+                                backgroundColor: HexColor('#ffffff'),
+                                child: Image.asset(
+                                  'assets/images/favicon.png',
+                                  fit: BoxFit.fill,
+                                ),
                               ),
-                            ),
-                            title: Text(
-                              '${profissional['titulo']}',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              '${profissional['subtitulo']}',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
+                              title: Text(
+                                '${profissional.titulo}',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                '${profissional.distancia}km',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 12),
+                              ),
+                              trailing: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                    size: 17,
+                                  ),
+                                  Text(
+                                    '${profissional.avaliacao}',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -180,3 +204,17 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
     );
   }
 }
+// Container(
+//                               alignment: Alignment.centerLeft,
+//                               width: alturaPadding * 0.1,
+//                               child: Row(
+//                                 children: [
+//                                   Icon(
+//                                     Icons.star,
+//                                     color: Colors.orange,
+//                                     size: 12,
+//                                   ),
+//                                   Text('${profissional.avaliacao}'),
+//                                 ],
+//                               ),
+//                             ),
