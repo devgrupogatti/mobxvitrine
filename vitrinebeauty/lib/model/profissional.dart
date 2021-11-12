@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'package:vitrinebeauty/model/servico.dart';
+
 class Profissional {
   int? id;
   String? nome;
@@ -7,7 +9,7 @@ class Profissional {
   List<Map<String, String>>? formaPagamento;
   String? endereco;
   String? descricao;
-  List<Map<String, String>>? servicos;
+  List<Servico>? servicos;
 
   //Uint8List? imagemPerfil;
   //List<Uint8List> outrasImagens;

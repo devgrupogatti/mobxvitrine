@@ -2,11 +2,13 @@
 
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
 import 'package:vitrinebeauty/model/profissional.dart';
 import 'package:vitrinebeauty/utils/adaptative_text_size.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
+import 'package:vitrinebeauty/widgets/widgets_busca/card_categorias_busca.dart';
 
 class PerfilProfissional extends StatefulWidget {
   final int? identificador;
@@ -21,6 +23,49 @@ class PerfilProfissional extends StatefulWidget {
 
 class _PerfilProfissionalState extends State<PerfilProfissional> {
   Profissional? profissionalSelecionado;
+  List<SvgPicture> imagens = [
+    SvgPicture.asset(
+      'assets/images/cabeloBox.svg',
+      //fit: BoxFit.contain,
+      fit: BoxFit.cover,
+      width: 150,
+      height: 150,
+    ),
+    SvgPicture.asset(
+      'assets/images/depilacaoBox.svg',
+      //fit: BoxFit.cover,
+      fit: BoxFit.cover,
+      width: 150, height: 150,
+    ),
+    SvgPicture.asset(
+      'assets/images/makeupBox.svg',
+      //fit: BoxFit.cover,
+      fit: BoxFit.cover,
+      // width: 100, height: 100,
+      width: 150, height: 150,
+    ),
+    SvgPicture.asset(
+      'assets/images/massagemBox.svg',
+      // fit: BoxFit.cover,
+      fit: BoxFit.cover,
+      // width: 100, height: 100,
+      width: 150, height: 150,
+    ),
+    SvgPicture.asset(
+      'assets/images/sobrancelhaBox.svg',
+      // fit: BoxFit.cover,
+      fit: BoxFit.cover,
+      // width: 100, height: 100,
+      width: 150, height: 150,
+    ),
+    SvgPicture.asset(
+      'assets/images/unhasBox.svg',
+      //fit: BoxFit.cover,
+      fit: BoxFit.cover,
+      // width: 100, height: 100,
+      width: 150, height: 150,
+    ),
+  ];
   @override
   void initState() {
     // TODO: implement initState
@@ -76,7 +121,7 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                 child: Container(
                   color: Colors.white,
                   width: double.infinity,
-                  height: altura * 1.2,
+                  height: altura * 1.8,
                 ),
               ),
               Positioned(
@@ -250,9 +295,9 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                                   Colors.pink.shade200,
                                             ),
                                             CheckboxListTile(
-                                              title: Text('${servico['tipo']}'),
+                                              title: Text('${servico.nome}'),
                                               //onTap: () {},
-                                              secondary: Icon(
+                                              secondary: const Icon(
                                                 Icons.person_rounded,
                                                 color: Colors.purple,
                                               ),
@@ -260,10 +305,12 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                               controlAffinity:
                                                   ListTileControlAffinity
                                                       .leading,
-                                              value: false,
+                                              value: servico.status,
                                               onChanged: (value) {
                                                 setState(() {
-                                                  print('shulambs');
+                                                  // servico.status !=
+                                                  //     servico.status;
+                                                  servico.status = true;
                                                 });
                                               },
                                             ),
@@ -284,6 +331,46 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                 dashColor: Colors.transparent,
                                 dashGapColor: Colors.pink.shade200,
                               ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: alturaPadding * 0.2),
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Fotos',
+                                        style: TextStyle(
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w400,
+                                          color: HexColor('#260633'),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(5.0),
+                                        child: GridView(
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          gridDelegate:
+                                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                            maxCrossAxisExtent: 200,
+                                            childAspectRatio: 4,
+                                            crossAxisSpacing: 1,
+                                            mainAxisSpacing: 5,
+                                          ),
+                                          children: imagens.map((imagem) {
+                                            return InkWell(
+                                                onTap: () {},
+                                                child:
+                                                    CardBuscaCategoria(imagem));
+                                          }).toList(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -299,3 +386,5 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
     );
   }
 }
+// depois de selecionar os serviços um pop up abrirá e ira pedir a data e o horario e assim sera 
+//redirecionado a tela do  detalhe do agendamento .

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:vitrinebeauty/model/profissional.dart';
+import 'package:vitrinebeauty/model/servico.dart';
 
 class ProfissionaisBuscaController with ChangeNotifier {
   int? indiceEscolhidoBusca;
@@ -14,9 +15,10 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
-          {'tipo': 'Depilacao'},
-          {'tipo': 'Sobrancelha'}
+          new Servico(
+              id: 71, status: false, nome: 'Corte de cabelo', preco: 45.0),
+          new Servico(id: 72, status: false, nome: 'Depilacao', preco: 30.0),
+          new Servico(id: 73, status: false, nome: 'Sobrancelha', preco: 25.0),
         ]),
     Profissional(
         id: 12,
@@ -26,9 +28,10 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
-          {'tipo': 'Depilacao'},
-          {'tipo': 'Sobrancelha'}
+          new Servico(
+              id: 81, status: false, nome: 'Corte de cabelo', preco: 30.0),
+          new Servico(id: 82, status: false, nome: 'Depilacao', preco: 36.0),
+          new Servico(id: 83, status: false, nome: 'Sobrancelha', preco: 32.0),
         ]),
     Profissional(
         id: 13,
@@ -38,8 +41,9 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
-          {'tipo': 'Depilacao'},
+          new Servico(
+              id: 11, status: false, nome: 'Corte de cabelo', preco: 35.0),
+          new Servico(id: 12, status: false, nome: 'Depilacao', preco: 33.0),
         ]),
     Profissional(
         id: 14,
@@ -49,9 +53,10 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
-          {'tipo': 'Depilacao'},
-          {'tipo': 'Sobrancelha'}
+          new Servico(
+              id: 21, status: false, nome: 'Corte de cabelo', preco: 35.0),
+          new Servico(id: 22, status: false, nome: 'Depilacao', preco: 30.0),
+          new Servico(id: 23, status: false, nome: 'Sobrancelha', preco: 28.0),
         ]),
     Profissional(
         id: 15,
@@ -61,9 +66,10 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
-          {'tipo': 'Depilacao'},
-          {'tipo': 'Sobrancelha'}
+          new Servico(
+              id: 31, status: false, nome: 'Corte de cabelo', preco: 35.0),
+          new Servico(id: 32, status: false, nome: 'Depilacao', preco: 46.0),
+          new Servico(id: 33, status: false, nome: 'Sobrancelha', preco: 31.0),
         ]),
     Profissional(
         id: 16,
@@ -73,7 +79,8 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
+          new Servico(
+              id: 41, status: false, nome: 'Corte de cabelo', preco: 51.0),
         ]),
     Profissional(
         id: 17,
@@ -83,9 +90,10 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
-          {'tipo': 'Depilacao'},
-          {'tipo': 'Sobrancelha'}
+          new Servico(
+              id: 51, status: false, nome: 'Corte de cabelo', preco: 35.0),
+          new Servico(id: 52, status: false, nome: 'Depilacao', preco: 47.0),
+          new Servico(id: 53, status: false, nome: 'Sobrancelha', preco: 27.0),
         ]),
     Profissional(
         id: 18,
@@ -95,9 +103,10 @@ class ProfissionaisBuscaController with ChangeNotifier {
         descricao:
             'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
         servicos: [
-          {'tipo': 'Corte de cabelo'},
-          {'tipo': 'Depilacao'},
-          {'tipo': 'Unha'}
+          new Servico(
+              id: 61, status: false, nome: 'Corte de cabelo', preco: 35.0),
+          new Servico(id: 62, status: false, nome: 'Depilacao', preco: 39.0),
+          new Servico(id: 64, status: false, nome: 'Unha', preco: 56.0),
         ]),
   ];
 
