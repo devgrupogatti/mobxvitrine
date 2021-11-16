@@ -9,6 +9,7 @@ import 'package:vitrinebeauty/model/profissional.dart';
 import 'package:vitrinebeauty/utils/adaptative_text_size.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_busca/card_categorias_busca.dart';
+import 'package:vitrinebeauty/widgets/widgets_perfil_profissional/galeria_profissional.dart';
 
 class PerfilProfissional extends StatefulWidget {
   final int? identificador;
@@ -23,6 +24,7 @@ class PerfilProfissional extends StatefulWidget {
 
 class _PerfilProfissionalState extends State<PerfilProfissional> {
   Profissional? profissionalSelecionado;
+
   List<SvgPicture> imagens = [
     SvgPicture.asset(
       'assets/images/cabeloBox.svg',
@@ -338,34 +340,21 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                   alignment: Alignment.centerLeft,
                                   child: Column(
                                     children: [
-                                      Text(
-                                        'Fotos',
-                                        style: TextStyle(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w400,
-                                          color: HexColor('#260633'),
+                                      Container(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Fotos',
+                                          style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w400,
+                                            color: HexColor('#260633'),
+                                          ),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.all(5.0),
-                                        child: GridView(
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          gridDelegate:
-                                              SliverGridDelegateWithMaxCrossAxisExtent(
-                                            maxCrossAxisExtent: 200,
-                                            childAspectRatio: 4,
-                                            crossAxisSpacing: 1,
-                                            mainAxisSpacing: 5,
-                                          ),
-                                          children: imagens.map((imagem) {
-                                            return InkWell(
-                                                onTap: () {},
-                                                child:
-                                                    CardBuscaCategoria(imagem));
-                                          }).toList(),
-                                        ),
+                                        padding: EdgeInsets.only(
+                                            top: alturaPadding * 0.05),
+                                        child: GaleriaFotos(),
                                       ),
                                     ],
                                   ),
@@ -379,6 +368,18 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                   ),
                 ),
               ),
+              Positioned(
+                  top: altura * 0.7,
+                  left: largura * 0.1,
+                  child: Center(
+                    child: Container(
+                        height: altura * 0.7,
+                        width: largura * 0.8,
+                        child: Image.asset(
+                          'assets/images/Unhas-banner-APP.png',
+                          fit: BoxFit.cover,
+                        )),
+                  ))
             ],
           ),
         ),
