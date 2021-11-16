@@ -98,6 +98,8 @@ class _GaleriaFotosState extends State<GaleriaFotos> {
       width: larguraTotal * 0.9,
       height: larguraTotal * 0.8,
       child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: 0,
           mainAxisSpacing: 0,
