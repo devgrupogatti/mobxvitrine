@@ -35,7 +35,7 @@ class _GaleriaFotosState extends State<GaleriaFotos> {
     return Container(
       alignment: Alignment.topCenter,
       width: larguraTotal * 0.9,
-      height: larguraTotal * 0.8,
+      height: larguraTotal * 0.5,
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -48,14 +48,14 @@ class _GaleriaFotosState extends State<GaleriaFotos> {
         itemBuilder: (context, index) {
           // Item rendering
           var inicio = _imagens[index];
-          return _criarFotoConainer(larguraTotal * 0.2, larguraTotal * 0.2,
+          return _criarFotoContainer(larguraTotal * 0.2, larguraTotal * 0.2,
               alturaTotal * 0.05, inicio, index);
         },
       ),
     );
   }
 
-  Widget _criarFotoConainer(double largura, double altura, double tamanhoIcone,
+  Widget _criarFotoContainer(double largura, double altura, double tamanhoIcone,
       String? imagem, int indice) {
     return Container(
       width: largura,
