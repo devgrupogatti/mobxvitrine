@@ -90,6 +90,7 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+          // height: altura * 1.9,
           color: HexColor('#260633'),
           child: Stack(
             children: [
@@ -123,7 +124,7 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                 child: Container(
                   color: Colors.white,
                   width: double.infinity,
-                  height: altura * 1.8,
+                  height: altura * 1.6,
                 ),
               ),
               Positioned(
@@ -354,7 +355,7 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: alturaPadding * 0.05),
-                                        child: GaleriaFotos(),
+                                        child: const GaleriaFotos(),
                                       ),
                                     ],
                                   ),
@@ -368,18 +369,6 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                   ),
                 ),
               ),
-              Positioned(
-                  top: altura * 0.7,
-                  left: largura * 0.1,
-                  child: Center(
-                    child: Container(
-                        height: altura * 0.7,
-                        width: largura * 0.8,
-                        child: Image.asset(
-                          'assets/images/Unhas-banner-APP.png',
-                          fit: BoxFit.cover,
-                        )),
-                  ))
             ],
           ),
         ),
@@ -387,5 +376,9 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
     );
   }
 }
+
+
+
+
 // depois de selecionar os serviços um pop up abrirá e ira pedir a data e o horario e assim sera 
 //redirecionado a tela do  detalhe do agendamento .
