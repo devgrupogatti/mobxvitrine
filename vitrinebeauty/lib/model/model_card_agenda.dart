@@ -1,3 +1,5 @@
+import 'package:vitrinebeauty/model/servico.dart';
+
 class ModelCardAgenda {
   String? id;
   int? avaliacao;

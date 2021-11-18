@@ -1,10 +1,13 @@
-// ignore_for_file: avoid_unnecessary_containers, unnecessary_const
+// ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors
 
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
+import 'package:vitrinebeauty/controller/servico_controller.dart';
 import 'package:vitrinebeauty/model/profissional.dart';
 import 'package:vitrinebeauty/utils/adaptative_text_size.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
@@ -24,58 +27,23 @@ class PerfilProfissional extends StatefulWidget {
 
 class _PerfilProfissionalState extends State<PerfilProfissional> {
   Profissional? profissionalSelecionado;
+  final listaServico = ServicoControllerStore();
 
-  List<SvgPicture> imagens = [
-    SvgPicture.asset(
-      'assets/images/cabeloBox.svg',
-      //fit: BoxFit.contain,
-      fit: BoxFit.cover,
-      width: 150,
-      height: 150,
-    ),
-    SvgPicture.asset(
-      'assets/images/depilacaoBox.svg',
-      //fit: BoxFit.cover,
-      fit: BoxFit.cover,
-      width: 150, height: 150,
-    ),
-    SvgPicture.asset(
-      'assets/images/makeupBox.svg',
-      //fit: BoxFit.cover,
-      fit: BoxFit.cover,
-      // width: 100, height: 100,
-      width: 150, height: 150,
-    ),
-    SvgPicture.asset(
-      'assets/images/massagemBox.svg',
-      // fit: BoxFit.cover,
-      fit: BoxFit.cover,
-      // width: 100, height: 100,
-      width: 150, height: 150,
-    ),
-    SvgPicture.asset(
-      'assets/images/sobrancelhaBox.svg',
-      // fit: BoxFit.cover,
-      fit: BoxFit.cover,
-      // width: 100, height: 100,
-      width: 150, height: 150,
-    ),
-    SvgPicture.asset(
-      'assets/images/unhasBox.svg',
-      //fit: BoxFit.cover,
-      fit: BoxFit.cover,
-      // width: 100, height: 100,
-      width: 150, height: 150,
-    ),
-  ];
   @override
   void initState() {
     // TODO: implement initState
+    // listaServico.listaServico.addAll(
+    //     Provider.of<ProfissionaisBuscaController>(context, listen: false)
+    //         .profissionaisSelecionados);
 
     super.initState();
     profissionalSelecionado =
         Provider.of<ProfissionaisBuscaController>(context, listen: false)
             .retornarProfissionalSelecionado(widget.identificador);
+
+    for (var element in profissionalSelecionado!.servicos!) {
+      listaServico.listaServico.add(element);
+    }
   }
 
   @override
@@ -319,44 +287,135 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                     padding: EdgeInsets.only(bottom: alturaIcone * 0.1),
                     child: Container(
                       alignment: Alignment.topLeft,
-                      child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: profissionalSelecionado!.servicos!.length,
-                          itemBuilder: (context, index) {
-                            final servico =
-                                profissionalSelecionado!.servicos![index];
-
-                            // return Text('Item 1 ');
-                            return Column(
+                      child: Column(
+                        children: [
+                          Observer(
+                            builder: (_) => Column(
                               children: [
-                                DottedLine(
-                                  dashLength: 2,
-                                  dashColor: Colors.transparent,
-                                  dashGapColor: Colors.pink.shade200,
-                                ),
-                                CheckboxListTile(
-                                  title: Text('${servico.nome}'),
-                                  //onTap: () {},
-                                  secondary: const Icon(
-                                    Icons.person_rounded,
-                                    color: Colors.purple,
-                                  ),
-                                  //onTap: _retornarDados,
-                                  controlAffinity:
-                                      ListTileControlAffinity.leading,
-                                  value: servico.status,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      // servico.status !=
-                                      //     servico.status;
-                                      servico.status = true;
-                                    });
+                                ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: listaServico.listaServico.length,
+                                  itemBuilder: (context, index) {
+                                    var servico =
+                                        listaServico.listaServico[index];
+                                    return Column(
+                                      children: [
+                                        DottedLine(
+                                          dashLength: 2,
+                                          dashColor: Colors.transparent,
+                                          dashGapColor: Colors.pink.shade200,
+                                        ),
+                                        CheckboxListTile(
+                                          title: Text('${servico.nome}'),
+                                          //onTap: () {},
+                                          secondary: Text(
+                                            'R\$ ${servico.preco}0',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey.shade700,
+                                            ),
+                                          ),
+                                          // secondary: const Icon(
+                                          //   Icons.person_rounded,
+                                          //   color: Colors.purple,
+                                          // ),
+                                          //onTap: _retornarDados,
+                                          controlAffinity:
+                                              ListTileControlAffinity.leading,
+                                          value: servico.status,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              // servico.status !=
+                                              //     servico.status;
+                                              listaServico.changeChecked(index);
+                                              // listaServico.somatorio();
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    );
                                   },
                                 ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: alturaPadding * 0.1),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      const Text(
+                                        'Valor : ',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black87,
+                                        ),
+                                      ),
+                                      Text(
+                                        'R\$ ${listaServico.valorTotal}',
+                                        style: const TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black87,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
-                            );
-                          }),
+                            ),
+                          ),
+                          Observer(
+                            builder: (_) => Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: alturaPadding * 0.05),
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    onPrimary: HexColor('#ffffff'),
+                                    primary: listaServico.habilitado
+                                        ? HexColor('#1818ff').withOpacity(0.9)
+                                        : Colors.grey,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(29)),
+                                    ),
+                                  ),
+                                  onPressed:
+                                      listaServico.habilitado ? () {} : () {},
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    width: double.infinity,
+                                    child: Row(
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: alturaIcone * 0.1),
+                                          child:
+                                              Icon(Icons.perm_contact_calendar),
+                                        ),
+                                        Text(
+                                          'Agendar Serviços',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      //_listaServico(),
                       // child: const Text(
                       //   'Serviços',
                       //   style: TextStyle(
@@ -404,6 +463,53 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
         ],
       ),
     );
+  }
+
+  Widget _listaServico() {
+    return ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: profissionalSelecionado!.servicos!.length,
+        itemBuilder: (context, index) {
+          final servico = profissionalSelecionado!.servicos![index];
+
+          // return Text('Item 1 ');
+          return Column(
+            children: [
+              DottedLine(
+                dashLength: 2,
+                dashColor: Colors.transparent,
+                dashGapColor: Colors.pink.shade200,
+              ),
+              CheckboxListTile(
+                title: Text('${servico.nome}'),
+                //onTap: () {},
+                secondary: Text(
+                  'R\$ ${servico.preco}0',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey.shade700,
+                  ),
+                ),
+                // secondary: const Icon(
+                //   Icons.person_rounded,
+                //   color: Colors.purple,
+                // ),
+                //onTap: _retornarDados,
+                controlAffinity: ListTileControlAffinity.leading,
+                value: servico.status,
+                onChanged: (value) {
+                  setState(() {
+                    // servico.status !=
+                    //     servico.status;
+                    servico.status = true;
+                  });
+                },
+              ),
+            ],
+          );
+        });
   }
 }
 

@@ -38,4 +38,6 @@ class AgendaController {
         nomeCliente: 'Daniella',
         servico: ['Corte de cabelo', 'Corte de cabelo', 'Corte de cabelo']),
   ];
+
+  void adicionar() {}
 }

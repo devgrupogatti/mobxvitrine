@@ -11,12 +11,20 @@ class DetalheAgenda extends StatefulWidget {
   final ModelCardAgenda card;
 
   const DetalheAgenda(this.card, {Key? key}) : super(key: key);
+  // const DetalheAgenda(this.card, {Key? key}) : super(key: key);
 
   @override
   _DetalheAgendaState createState() => _DetalheAgendaState();
 }
 
 class _DetalheAgendaState extends State<DetalheAgenda> {
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+
+  //   super.initState();
+  // }
+
   final duvidaIcon = 'assets/images/faqIconHome.svg';
   @override
   Widget build(BuildContext context) {
