@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors
 
 import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -29,6 +30,8 @@ class PerfilProfissional extends StatefulWidget {
 class _PerfilProfissionalState extends State<PerfilProfissional> {
   Profissional? profissionalSelecionado;
   final listaServico = ServicoControllerStore();
+  DateTime? _dataSelecionada;
+  TimeOfDay? horaSelecionada;
 
   @override
   void initState() {
@@ -45,6 +48,283 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
     for (var element in profissionalSelecionado!.servicos!) {
       listaServico.listaServico.add(element);
     }
+  }
+
+  // _selectTime() async {
+  //   final TimeOfDay? time = await showTimePicker(
+  //     context: context,
+  //     initialTime: horaSelecionada ?? TimeOfDay.now(),
+  //   );
+  //   if (time == null) {
+  //     setState(() {
+  //       horaSelecionada = time;
+  //       print(
+  //           '${_dataSelecionada!.day}/${_dataSelecionada!.month}/${_dataSelecionada!.year}');
+  //     });
+  //   }
+  // }
+
+  void confirmacaoAgendamento(double alturaPadding, double alturaIcone) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Confirmação de agendamento'),
+        content: Container(
+          height: alturaPadding * 1.9,
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Valor total dos serviços selecionados :',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: alturaIcone * 0.3),
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'R\$${listaServico.valorTotal}',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Endereço:',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: alturaIcone * 0.3),
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '${profissionalSelecionado!.endereco}',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Formas de pagamento:',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: alturaIcone * 0.3),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: alturaIcone * 0.05),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: alturaIcone * 0.1,
+                            vertical: alturaIcone * 0.1),
+                        color: Colors.green.shade700,
+                        child: Text(
+                          'Dinheiro',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: alturaIcone * 0.05),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: alturaIcone * 0.1,
+                            vertical: alturaIcone * 0.1),
+                        color: Colors.green.shade700,
+                        child: Text(
+                          'Crédito',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: alturaIcone * 0.05),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: alturaIcone * 0.1,
+                            vertical: alturaIcone * 0.1),
+                        color: Colors.green.shade700,
+                        child: Text(
+                          'Débito',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        child: Text('Data:'),
+                      ),
+                      Observer(
+                        builder: (_) => Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: alturaIcone * 0.2,
+                              horizontal: alturaIcone * 0.08),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              onPrimary: HexColor('#260633'),
+                              primary: Colors.grey[100],
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                listaServico.selectData(context);
+                              });
+                            },
+                            child: Container(
+                              color: Colors.grey[100],
+                              child: Row(
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                          right: alturaIcone * 0.16),
+                                      child: Text(
+                                        '${listaServico.dataSelecionada!.day}/${listaServico.dataSelecionada!.month}/${listaServico.dataSelecionada!.year}',
+                                        style: TextStyle(fontSize: 14),
+                                      )),
+                                  Icon(
+                                    Icons.calendar_today_rounded,
+                                    size: 28,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Observer(
+                    builder: (_) => Column(
+                      children: [
+                        Container(
+                          child: Text('Hora:'),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: alturaIcone * 0.2,
+                              horizontal: alturaIcone * 0.1),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              onPrimary: HexColor('#260633'),
+                              primary: Colors.grey[100],
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                listaServico.selectTime(context);
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Observer(
+                                  builder: (_) => Padding(
+                                      padding: EdgeInsets.only(
+                                          right: alturaIcone * 0.2),
+                                      child: Text(
+                                          '${listaServico.horaSelecionada!.hour}:${listaServico.horaSelecionada!.minute}')),
+                                ),
+                                Icon(
+                                  Icons.watch_later_outlined,
+                                  size: 28,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              onPrimary: HexColor('#ffffff'),
+              primary: HexColor('#dc3545').withOpacity(0.9),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(29)),
+              ),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Fechar'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              onPrimary: HexColor('#ffffff'),
+              primary: listaServico.habilitado
+                  ? HexColor('#1818ff').withOpacity(0.9)
+                  : Colors.grey,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(29)),
+              ),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Confirmar'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -387,25 +667,28 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                   ),
                                   onPressed: listaServico.habilitado
                                       ? () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) {
-                                                // return PerfilProfissional(
-                                                //     profissional['titulo']);
-                                                //return PerfilProfissional(profissional);
-                                                return Agendamento(
-                                                    listaServico
-                                                        .servicosSelecionados,
-                                                    listaServico.valorTotal,
-                                                    profissionalSelecionado!
-                                                        .nome,
-                                                    profissionalSelecionado!
-                                                        .endereco);
-                                                ;
-                                              },
-                                            ),
-                                          );
+                                          confirmacaoAgendamento(
+                                              alturaPadding, alturaIcone);
+
+                                          // Navigator.push(
+                                          //   context,
+                                          //   MaterialPageRoute(
+                                          //     builder: (context) {
+                                          //       // return PerfilProfissional(
+                                          //       //     profissional['titulo']);
+                                          //       //return PerfilProfissional(profissional);
+                                          //       return Agendamento(
+                                          //           listaServico
+                                          //               .servicosSelecionados,
+                                          //           listaServico.valorTotal,
+                                          //           profissionalSelecionado!
+                                          //               .nome,
+                                          //           profissionalSelecionado!
+                                          //               .endereco);
+
+                                          //     },
+                                          //   ),
+                                          // );
                                         }
                                       : () {},
                                   child: Container(
@@ -437,14 +720,6 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                           ),
                         ],
                       ),
-                      //_listaServico(),
-                      // child: const Text(
-                      //   'Serviços',
-                      //   style: TextStyle(
-                      //       color: Colors.black,
-                      //       fontSize: 25.0,
-                      //       fontWeight: FontWeight.w400),
-                      // ),
                     ),
                   ),
                   DottedLine(

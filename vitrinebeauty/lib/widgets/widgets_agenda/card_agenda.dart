@@ -1,5 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers
-
+// ignore_for_file: avoid_unnecessary_containers, avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/model/model_card_agenda.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
@@ -7,8 +6,31 @@ import 'package:vitrinebeauty/utils/hexColor.dart';
 class CardAgenda extends StatefulWidget {
   final ModelCardAgenda card;
   final int tipoProcesso;
-  const CardAgenda(this.card, this.tipoProcesso, {Key? key}) : super(key: key);
-
+  final String nomeProfissional;
+  final List<String> servicos;
+  final String data;
+  final String hora;
+  const CardAgenda(this.card, this.tipoProcesso, {Key? key})
+      : nomeProfissional = 'a',
+        servicos = const [],
+        data = '00/00/00',
+        hora = '00:00';
+  // CardAgenda.edit(
+  //   this.nomeProfissional,
+  //   this.servicos,
+  //   this.data,
+  //   this.hora,
+  // )   : card = ModelCardAgenda(
+  //         id: 01,
+  //         data: '19-04-2020',
+  //         hora: '18:30',
+  //         nomeProfissional: 'Daniella',
+  //         servico: ['Corte de cabelo', 'Corte de cabelo', 'Corte de cabelo'],
+  //         valorTotal: 'R\$94,04',
+  //         enderecoProfissional: 'Rua wander joaquim n° 932 - Barreiro',
+  //         statusAgendamento: 'Aguardando Confirmacao',
+  //       ),
+  //       tipoProcesso = 1;
   @override
   _CardAgendaState createState() => _CardAgendaState();
 }

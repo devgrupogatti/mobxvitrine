@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:vitrinebeauty/model/servico.dart';
 part 'servico_controller.g.dart';
@@ -14,6 +15,10 @@ abstract class _ServicoControllerStore with Store {
   double valorTotal = 0.0;
   @observable
   bool habilitado = false;
+  @observable
+  DateTime dataSelecionada = DateTime.now();
+  @observable
+  TimeOfDay horaSelecionada = TimeOfDay.now();
 
   @action
   somatorio(Servico servicoSelecionado) {
@@ -53,5 +58,27 @@ abstract class _ServicoControllerStore with Store {
     } else {
       habilitado = false;
     }
+  }
+
+  @action
+  selectData(BuildContext context) async {
+    final DateTime? data = await showDatePicker(
+      context: context,
+      initialDate: dataSelecionada,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2030),
+    );
+
+    dataSelecionada = data!;
+  }
+
+  @action
+  selectTime(BuildContext context) async {
+    final TimeOfDay? time = await showTimePicker(
+      context: context,
+      initialTime: horaSelecionada,
+    );
+
+    horaSelecionada = time!;
   }
 }
