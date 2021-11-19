@@ -1,19 +1,24 @@
 import 'package:vitrinebeauty/model/servico.dart';
 
 class ModelCardAgenda {
-  String? id;
-  int? avaliacao;
+  int? id;
+  // int? avaliacao;
   String? data;
   String? hora;
-  String? nomeCliente;
+  String? nomeProfissional;
   List<String>? servico;
-
+  String? valorTotal;
+  String? enderecoProfissional;
+  String? statusAgendamento;
   ModelCardAgenda({
     this.id,
-    this.avaliacao,
+    // this.avaliacao,
     this.data,
     this.hora,
-    this.nomeCliente,
+    this.nomeProfissional,
     this.servico,
+    this.valorTotal,
+    this.enderecoProfissional,
+    this.statusAgendamento,
   });
 }

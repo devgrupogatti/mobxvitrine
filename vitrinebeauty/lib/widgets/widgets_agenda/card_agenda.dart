@@ -86,7 +86,7 @@ class _CardAgendaState extends State<CardAgenda> {
                           Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              widget.card.nomeCliente ?? '',
+                              widget.card.nomeProfissional ?? '',
                               style: const TextStyle(
                                 fontSize: 23,
                                 color: Colors.white,
@@ -100,30 +100,47 @@ class _CardAgendaState extends State<CardAgenda> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: alturaPadding * 0.02),
-                                  child: Text(
-                                    widget.card.servico!.elementAt(0),
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: EdgeInsets.symmetric(
+                                //       vertical: alturaPadding * 0.02),
+                                //   child: Text(
+                                //     widget.card.servico!.elementAt(0),
+                                //     style: const TextStyle(
+                                //       fontSize: 15,
+                                //       color: Colors.white,
+                                //       fontWeight: FontWeight.w600,
+                                //     ),
+                                //   ),
+                                // ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: alturaPadding * 0.02),
                                   child: Container(
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      '+${widget.card.servico!.length - 1} itens',
-                                      style: TextStyle(
-                                        color: HexColor('#fd5afb'),
-                                        fontSize: 13,
-                                      ),
-                                    ),
+                                    // child: Text(
+                                    //   '+${widget.card.servico!.length - 1} itens',
+                                    //   style: TextStyle(
+                                    //     color: HexColor('#fd5afb'),
+                                    //     fontSize: 13,
+                                    //   ),
+                                    // ),
+                                    child: ListView.builder(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: widget.card.servico!.length,
+                                        itemBuilder: (context, index) {
+                                          var servico =
+                                              widget.card.servico![index];
+                                          return Text(
+                                            '- $servico',
+                                            style: const TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          );
+                                        }),
                                   ),
                                 ),
                                 widget.tipoProcesso == 1

@@ -132,9 +132,9 @@ class _DetalheAgendaState extends State<DetalheAgenda> {
                           child: Transform(
                             transform: Matrix4.translationValues(10, 0.0, 0.0),
                             child: Container(
-                              child: const Text(
-                                'Bravadžiluk, Sarajevo, Bósnia e Herzegovina',
-                                style: TextStyle(
+                              child: Text(
+                                '${widget.card.enderecoProfissional}',
+                                style: const TextStyle(
                                   fontSize: 13.0,
                                   overflow: TextOverflow.ellipsis,
                                   color: Colors.black,
@@ -168,9 +168,9 @@ class _DetalheAgendaState extends State<DetalheAgenda> {
                         ),
                         Container(
                           alignment: Alignment.centerLeft,
-                          child: const Text(
-                            'R\$50,00',
-                            style: TextStyle(
+                          child: Text(
+                            '${widget.card.valorTotal}',
+                            style: const TextStyle(
                                 fontSize: 21, fontWeight: FontWeight.w500),
                           ),
                         ),
@@ -197,9 +197,9 @@ class _DetalheAgendaState extends State<DetalheAgenda> {
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        child: const Text(
-                          'Aguardando confirmação',
-                          style: TextStyle(
+                        child: Text(
+                          '${widget.card.statusAgendamento}',
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
                           ),

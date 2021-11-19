@@ -17,7 +17,6 @@ abstract class _ServicoControllerStore with Store {
 
   @action
   somatorio(Servico servicoSelecionado) {
-    List<double> valores = [];
     valorTotal = 0.0;
     for (var element in servicosSelecionados) {
       valorTotal = valorTotal + element.preco!;

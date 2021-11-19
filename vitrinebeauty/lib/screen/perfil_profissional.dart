@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
 import 'package:vitrinebeauty/controller/servico_controller.dart';
 import 'package:vitrinebeauty/model/profissional.dart';
+import 'package:vitrinebeauty/screen/agendamento.dart';
 import 'package:vitrinebeauty/utils/adaptative_text_size.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_busca/card_categorias_busca.dart';
@@ -384,8 +385,29 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                           BorderRadius.all(Radius.circular(29)),
                                     ),
                                   ),
-                                  onPressed:
-                                      listaServico.habilitado ? () {} : () {},
+                                  onPressed: listaServico.habilitado
+                                      ? () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                // return PerfilProfissional(
+                                                //     profissional['titulo']);
+                                                //return PerfilProfissional(profissional);
+                                                return Agendamento(
+                                                    listaServico
+                                                        .servicosSelecionados,
+                                                    listaServico.valorTotal,
+                                                    profissionalSelecionado!
+                                                        .nome,
+                                                    profissionalSelecionado!
+                                                        .endereco);
+                                                ;
+                                              },
+                                            ),
+                                          );
+                                        }
+                                      : () {},
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: double.infinity,
@@ -463,53 +485,6 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
         ],
       ),
     );
-  }
-
-  Widget _listaServico() {
-    return ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: profissionalSelecionado!.servicos!.length,
-        itemBuilder: (context, index) {
-          final servico = profissionalSelecionado!.servicos![index];
-
-          // return Text('Item 1 ');
-          return Column(
-            children: [
-              DottedLine(
-                dashLength: 2,
-                dashColor: Colors.transparent,
-                dashGapColor: Colors.pink.shade200,
-              ),
-              CheckboxListTile(
-                title: Text('${servico.nome}'),
-                //onTap: () {},
-                secondary: Text(
-                  'R\$ ${servico.preco}0',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-                // secondary: const Icon(
-                //   Icons.person_rounded,
-                //   color: Colors.purple,
-                // ),
-                //onTap: _retornarDados,
-                controlAffinity: ListTileControlAffinity.leading,
-                value: servico.status,
-                onChanged: (value) {
-                  setState(() {
-                    // servico.status !=
-                    //     servico.status;
-                    servico.status = true;
-                  });
-                },
-              ),
-            ],
-          );
-        });
   }
 }
 
