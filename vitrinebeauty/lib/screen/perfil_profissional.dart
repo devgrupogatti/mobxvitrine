@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors, unnecessary_string_interpolations
 
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,15 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
 import 'package:vitrinebeauty/controller/servico_controller.dart';
+import 'package:vitrinebeauty/model/model_card_agenda.dart';
 import 'package:vitrinebeauty/model/profissional.dart';
-import 'package:vitrinebeauty/screen/agendamento.dart';
-import 'package:vitrinebeauty/utils/adaptative_text_size.dart';
+import 'package:vitrinebeauty/screen/detalhes_agenda.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
-import 'package:vitrinebeauty/widgets/widgets_busca/card_categorias_busca.dart';
+import 'package:vitrinebeauty/widgets/widgets_perfil_profissional/descricao_profissional.dart';
+import 'package:vitrinebeauty/widgets/widgets_perfil_profissional/formas_pagamento.dart';
 import 'package:vitrinebeauty/widgets/widgets_perfil_profissional/galeria_profissional.dart';
+import 'package:vitrinebeauty/widgets/widgets_perfil_profissional/info_confirmacao_agendamento.dart';
+import 'package:vitrinebeauty/widgets/widgets_perfil_profissional/informacoes_basicas_profissional.dart';
 
 class PerfilProfissional extends StatefulWidget {
   final int? identificador;
@@ -50,20 +54,6 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
     }
   }
 
-  // _selectTime() async {
-  //   final TimeOfDay? time = await showTimePicker(
-  //     context: context,
-  //     initialTime: horaSelecionada ?? TimeOfDay.now(),
-  //   );
-  //   if (time == null) {
-  //     setState(() {
-  //       horaSelecionada = time;
-  //       print(
-  //           '${_dataSelecionada!.day}/${_dataSelecionada!.month}/${_dataSelecionada!.year}');
-  //     });
-  //   }
-  // }
-
   void confirmacaoAgendamento(double alturaPadding, double alturaIcone) {
     showDialog(
       context: context,
@@ -73,56 +63,8 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
           height: alturaPadding * 1.9,
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Valor total dos serviços selecionados :',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: alturaIcone * 0.3),
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'R\$${listaServico.valorTotal}',
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Endereço:',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: alturaIcone * 0.3),
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '${profissionalSelecionado!.endereco}',
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
+              InfoConfAgendamento(
+                  listaServico.valorTotal, profissionalSelecionado!.endereco),
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -136,66 +78,10 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: alturaIcone * 0.3),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: alturaIcone * 0.05),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: alturaIcone * 0.1,
-                            vertical: alturaIcone * 0.1),
-                        color: Colors.green.shade700,
-                        child: Text(
-                          'Dinheiro',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: alturaIcone * 0.05),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: alturaIcone * 0.1,
-                            vertical: alturaIcone * 0.1),
-                        color: Colors.green.shade700,
-                        child: Text(
-                          'Crédito',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: alturaIcone * 0.05),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: alturaIcone * 0.1,
-                            vertical: alturaIcone * 0.1),
-                        color: Colors.green.shade700,
-                        child: Text(
-                          'Débito',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                child: FormasPagamento(),
               ),
-              Row(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     children: [
@@ -222,14 +108,19 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                               });
                             },
                             child: Container(
+                              width: alturaPadding * 0.6,
                               color: Colors.grey[100],
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Padding(
                                       padding: EdgeInsets.only(
                                           right: alturaIcone * 0.16),
                                       child: Text(
-                                        '${listaServico.dataSelecionada!.day}/${listaServico.dataSelecionada!.month}/${listaServico.dataSelecionada!.year}',
+                                        //  '${listaServico.dataSelecionada.day}/${listaServico.dataSelecionada.month}/${listaServico.dataSelecionada.year}',
+                                        DateFormat("dd/MM/yyyy").format(
+                                            listaServico.dataSelecionada),
                                         style: TextStyle(fontSize: 14),
                                       )),
                                   Icon(
@@ -268,20 +159,27 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                 listaServico.selectTime(context);
                               });
                             },
-                            child: Row(
-                              children: [
-                                Observer(
-                                  builder: (_) => Padding(
+                            child: Container(
+                              width: alturaPadding * 0.6,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Observer(
+                                    builder: (_) => Padding(
                                       padding: EdgeInsets.only(
                                           right: alturaIcone * 0.2),
                                       child: Text(
-                                          '${listaServico.horaSelecionada!.hour}:${listaServico.horaSelecionada!.minute}')),
-                                ),
-                                Icon(
-                                  Icons.watch_later_outlined,
-                                  size: 28,
-                                ),
-                              ],
+                                          //  '${listaServico.horaSelecionada.hour}:${listaServico.horaSelecionada.minute}',
+                                          '${listaServico.horaSelecionada.format(context)}'),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.watch_later_outlined,
+                                    size: 28,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -318,7 +216,26 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
+              ModelCardAgenda novoCard = ModelCardAgenda(
+                  id: 1,
+                  data: DateFormat("dd/MM/yyyy")
+                      .format(listaServico.dataSelecionada),
+                  hora: '${listaServico.horaSelecionada.format(context)}',
+                  nomeProfissional: profissionalSelecionado!.nome,
+                  servico: listaServico.servicosSelecionados,
+                  valorTotal: listaServico.valorTotal.toStringAsFixed(2),
+                  enderecoProfissional: profissionalSelecionado!.endereco,
+                  statusAgendamento: 'Aguardando Confirmação');
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DetalheAgenda(novoCard);
+                  },
+                ),
+              );
             },
             child: Text('Confirmar'),
           ),
@@ -466,57 +383,7 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListTile(
-            leading: const Icon(
-              Icons.access_time,
-              color: Colors.black,
-            ),
-            title: Transform(
-              transform: Matrix4.translationValues(-30, 0.0, 0.0),
-              child: Text(
-                '${profissionalSelecionado!.horario}',
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-          Transform(
-            transform: Matrix4.translationValues(0.0, -15.0, 0.0),
-            child: ListTile(
-              leading: const Icon(
-                Icons.account_balance_wallet,
-                color: Colors.black,
-              ),
-              title: Transform(
-                transform: Matrix4.translationValues(-30, 0.0, 0.0),
-                child: const Text(
-                  'Formas de pagamento',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Transform(
-            transform: Matrix4.translationValues(0.0, -30.0, 0.0),
-            child: ListTile(
-              leading: const Icon(
-                Icons.location_on,
-                color: Colors.black,
-              ),
-              title: Transform(
-                transform: Matrix4.translationValues(-30, 0.0, 0.0),
-                child: Text(
-                  '${profissionalSelecionado!.endereco}',
-                  style: const TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          InformacoesBasicas(profissionalSelecionado!),
           Padding(
             padding: EdgeInsets.only(
               left: alturaIcone * 0.4,
@@ -526,29 +393,7 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
             child: Container(
               child: Column(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: alturaIcone * 0.1),
-                    child: Container(
-                      alignment: Alignment.topLeft,
-                      child: const Text(
-                        'Olá!',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: Text(
-                      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis sapiente eligendi quod, quia voluptatum deserunt sint cum mollitia iste aut architecto provident error, libero excepturi dicta laboriosam pariatur corporis neque!',
-                      style: TextStyle(
-                        fontSize: const AdaptiveTextSize()
-                            .getadaptiveTextSize(context, 16),
-                      ),
-                      textAlign: TextAlign.justify,
-                    ),
-                  ),
+                  DescricaoProfissional(),
                   Padding(
                     padding:
                         EdgeInsets.symmetric(vertical: alturaPadding * 0.08),
@@ -598,11 +443,7 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                               color: Colors.grey.shade700,
                                             ),
                                           ),
-                                          // secondary: const Icon(
-                                          //   Icons.person_rounded,
-                                          //   color: Colors.purple,
-                                          // ),
-                                          //onTap: _retornarDados,
+
                                           controlAffinity:
                                               ListTileControlAffinity.leading,
                                           value: servico.status,

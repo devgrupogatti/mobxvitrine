@@ -116,6 +116,10 @@ class _DetalheAgendaState extends State<DetalheAgenda> {
                 children: [
                   Container(
                     alignment: Alignment.center,
+                    //************************
+                    //************************
+                    //************************
+                    //************************
                     child: CardAgenda(widget.card, 2),
                   ),
                   Container(
@@ -135,7 +139,7 @@ class _DetalheAgendaState extends State<DetalheAgenda> {
                               child: Text(
                                 '${widget.card.enderecoProfissional}',
                                 style: const TextStyle(
-                                  fontSize: 13.0,
+                                  fontSize: 17.0,
                                   overflow: TextOverflow.ellipsis,
                                   color: Colors.black,
                                 ),

@@ -1,13 +1,14 @@
 // ignore_for_file: avoid_unnecessary_containers, avoid_web_libraries_in_flutter
 import 'package:flutter/material.dart';
 import 'package:vitrinebeauty/model/model_card_agenda.dart';
+import 'package:vitrinebeauty/model/servico.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 
 class CardAgenda extends StatefulWidget {
   final ModelCardAgenda card;
   final int tipoProcesso;
   final String nomeProfissional;
-  final List<String> servicos;
+  final List<Servico> servicos;
   final String data;
   final String hora;
   const CardAgenda(this.card, this.tipoProcesso, {Key? key})
@@ -155,7 +156,7 @@ class _CardAgendaState extends State<CardAgenda> {
                                           var servico =
                                               widget.card.servico![index];
                                           return Text(
-                                            '- $servico',
+                                            '- ${servico.nome}',
                                             style: const TextStyle(
                                               fontSize: 15,
                                               color: Colors.white,

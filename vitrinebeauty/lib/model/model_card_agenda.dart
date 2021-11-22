@@ -6,7 +6,7 @@ class ModelCardAgenda {
   String? data;
   String? hora;
   String? nomeProfissional;
-  List<String>? servico;
+  List<Servico>? servico;
   String? valorTotal;
   String? enderecoProfissional;
   String? statusAgendamento;
