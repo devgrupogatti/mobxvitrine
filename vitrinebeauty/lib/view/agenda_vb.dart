@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/controller/agenda_controller.dart';
 import 'package:vitrinebeauty/model/model_card_agenda.dart';
 import 'package:vitrinebeauty/screen/detalhes_agenda.dart';
@@ -19,7 +20,8 @@ class _AgendaBeautyState extends State<AgendaBeauty> {
     double largura = MediaQuery.of(context).size.width;
     double altura = MediaQuery.of(context).size.height;
     double alturaPadding = altura * 0.4;
-    List<ModelCardAgenda> agendas = AgendaController().agendas;
+    List<ModelCardAgenda> agendas =
+        Provider.of<AgendaController>(context, listen: false).agendas;
 
     return SingleChildScrollView(
       child: Padding(

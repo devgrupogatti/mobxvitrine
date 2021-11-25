@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // ignore_for_file: unnecessary_new, use_key_in_widget_constructors
 
 import 'package:provider/provider.dart';
+import 'package:vitrinebeauty/controller/agenda_controller.dart';
 import 'package:vitrinebeauty/controller/auth_or_dashboard.dart';
 import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
 import 'package:vitrinebeauty/model/conta_usuario.dart';
@@ -17,6 +18,7 @@ import 'package:vitrinebeauty/screen/vb_central_ajuda.dart';
 import 'package:vitrinebeauty/screen/vb_endereco_cliente.dart';
 import 'package:vitrinebeauty/screen/vb_tela_configuracoes.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
+import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/view/cadastro.dart';
 import 'package:vitrinebeauty/view/login.dart';
 
@@ -57,6 +59,7 @@ class VitrineBeauty extends StatelessWidget {
           ),
         ),
         ChangeNotifierProvider(create: (context) => ReqProfissionais()),
+        ChangeNotifierProvider(create: (context) => AgendaController()),
         ChangeNotifierProvider(
             create: (context) => ProfissionaisBuscaController()),
       ],

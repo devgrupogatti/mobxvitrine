@@ -17,7 +17,7 @@ class Autenticacao with ChangeNotifier {
   }
 
   bool get isAuth {
-    return token != null;
+    return token == null;
   }
 
   String? get codVinculo {
@@ -55,7 +55,8 @@ class Autenticacao with ChangeNotifier {
   }
 
   Future<void> logar(String? email, String? senha) async {
-    var uri = Uri.parse("https://vbproviders.vitrinebeauty.com/api/login");
+    var uri = Uri.parse("https://vbclients.vitrinebeauty.com/api/auth/signin");
+    _token = null;
 
     print('email : $email e senha : $senha');
 
@@ -63,26 +64,28 @@ class Autenticacao with ChangeNotifier {
       uri,
       headers: {
         "Accept": "application/json",
-        "content-type": "application/json"
+        "content-type": "application/x-www-form-urlenconded"
       },
       body: json.encode({
-        'email': email,
-        'password': senha,
+        "email": email,
+        "password": senha,
       }),
     );
     print('Status ${resposta.statusCode}');
-    print(' conteudo : ${resposta.toString()}');
+    //print(' conteudo : ${resposta.toString()}');
+    print('conteudo da resposta : ${resposta.body}');
     final responseBody = json.decode(resposta.body);
     //print(' Erro requisicao :  $responseBody');
-    print(' mensagem de resposta :  ${responseBody['message']}');
+    print('conteudo da resposta : ${responseBody["session"]}');
+    print(' mensagem de resposta :  ${responseBody['session']}');
 
-    if (responseBody['message'].toString().contains('dados invalidos')) {
-      print('${responseBody['message']}');
-    } else {
-      print(responseBody['message']);
-      _token = responseBody['sessionToken'];
-      notifyListeners();
-    }
+    // if (responseBody['session'].toString().contains('dados invalidos')) {
+    //   print(' informando a session ${responseBody['session']}');
+    // } else {
+    //   print(responseBody['session']);
+    //   //_token = responseBody['sessionToken'];
+    //   notifyListeners();
+    // }
     return Future.value();
   }
 

@@ -8,6 +8,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:vitrinebeauty/controller/agenda_controller.dart';
 import 'package:vitrinebeauty/controller/profissionais_busca_controller.dart';
 import 'package:vitrinebeauty/controller/servico_controller.dart';
 import 'package:vitrinebeauty/model/model_card_agenda.dart';
@@ -217,25 +218,33 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
             ),
             onPressed: () {
               // Navigator.of(context).pop();
-              ModelCardAgenda novoCard = ModelCardAgenda(
-                  id: 1,
-                  data: DateFormat("dd/MM/yyyy")
-                      .format(listaServico.dataSelecionada),
-                  hora: '${listaServico.horaSelecionada.format(context)}',
-                  nomeProfissional: profissionalSelecionado!.nome,
-                  servico: listaServico.servicosSelecionados,
-                  valorTotal: listaServico.valorTotal.toStringAsFixed(2),
-                  enderecoProfissional: profissionalSelecionado!.endereco,
-                  statusAgendamento: 'Aguardando Confirmação');
 
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DetalheAgenda(novoCard);
-                  },
-                ),
-              );
+              setState(() {
+                ModelCardAgenda novoCard = ModelCardAgenda(
+                    id: 1,
+                    data: DateFormat("dd/MM/yyyy")
+                        .format(listaServico.dataSelecionada),
+                    hora: '${listaServico.horaSelecionada.format(context)}',
+                    nomeProfissional: profissionalSelecionado!.nome,
+                    servico: listaServico.servicosSelecionados,
+                    valorTotal: listaServico.valorTotal.toStringAsFixed(2),
+                    enderecoProfissional: profissionalSelecionado!.endereco,
+                    statusAgendamento: 'Aguardando Confirmação');
+
+                AgendaController novaAgenda =
+                    Provider.of<AgendaController>(context, listen: false);
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      // AgendaController novaAgenda = AgendaController();
+                      novaAgenda.adicionarAgenda(novoCard);
+                      return DetalheAgenda(novoCard);
+                    },
+                  ),
+                );
+              });
             },
             child: Text('Confirmar'),
           ),

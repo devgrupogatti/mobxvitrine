@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:vitrinebeauty/model/model_card_agenda.dart';
 import 'package:vitrinebeauty/model/servico.dart';
 
-class AgendaController {
+class AgendaController with ChangeNotifier {
   List<ModelCardAgenda> agendas = [
     ModelCardAgenda(
       id: 01,
@@ -78,5 +79,12 @@ class AgendaController {
     ),
   ];
 
-  void adicionar() {}
+  void adicionarAgenda(ModelCardAgenda agendaCadastrada) {
+    agendas.add(agendaCadastrada);
+    notifyListeners();
+  }
+
+  void removerAgenda(ModelCardAgenda agendaExcuida) {
+    agendas.remove(agendaExcuida);
+  }
 }
