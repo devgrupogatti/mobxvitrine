@@ -50,15 +50,9 @@ class Autenticacao with ChangeNotifier {
 
   Future<void> cadastrar(
       String? nome, String? email, String? telefone, String? senha) async {
+    var uri = Uri.parse("https://clients.vitrinebeauty.com/api/signup");
     print(
         ' nome : $nome, email : $email, telefone : $telefone, senha : $senha');
-  }
-
-  Future<void> logar(String? email, String? senha) async {
-    var uri = Uri.parse("https://vbclients.vitrinebeauty.com/api/auth/signin");
-    _token = null;
-
-    print('email : $email e senha : $senha');
 
     var resposta = await http.post(
       uri,
@@ -67,8 +61,11 @@ class Autenticacao with ChangeNotifier {
         "content-type": "application/x-www-form-urlenconded"
       },
       body: json.encode({
+        "name": nome,
         "email": email,
+        "phone": telefone,
         "password": senha,
+        "match": senha,
       }),
     );
     print('Status ${resposta.statusCode}');
@@ -76,14 +73,74 @@ class Autenticacao with ChangeNotifier {
     print('conteudo da resposta : ${resposta.body}');
     final responseBody = json.decode(resposta.body);
     //print(' Erro requisicao :  $responseBody');
-    print('conteudo da resposta : ${responseBody["session"]}');
-    print(' mensagem de resposta :  ${responseBody['session']}');
+    // print('conteudo da resposta : ${responseBody["session"]}');
+    if (responseBody["error"]) {
+      print("mensagem do erro ${responseBody["message"]}");
+    } else {
+      print("cadastro realizado com exito ${responseBody["message"]}");
+    }
+  }
+
+  Future<void> logar(String? email, String? senha, String? latitudade,
+      String? longitude) async {
+    var uri = Uri.parse("https://clients.vitrinebeauty.com/api/auth/signin");
+    _token = null;
+
+    print('email : $email e senha : $senha');
+
+    final resposta = await http.post(
+      uri,
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/x-www-form-urlenconded"
+      },
+      body: json.encode({
+        "email": email,
+        "password": senha,
+        "lat": latitudade,
+        "long": longitude,
+      }),
+    );
+    print('Status ${resposta.statusCode}');
+    final responseBody = json.decode(resposta.body);
+    print('${responseBody["session"]["token"]}');
+
+    //print(' conteudo : ${resposta.toString()}');
+    //print('conteudo da resposta : ${resposta.body}');
+    // List<dynamic> data = json.decode(resposta.body);
+    // final data = resposta.body[0];
+    //print(' Erro requisicao :  $responseBody');
+    //print('conteudo do token : ${responseBody["session"]["token"]}');
+    // print('chaves da resposta ${responseBody['session']}')
+    // print(' mensagem de resposta :  ${responseBody['session']}');
+    // print("shulambs  data : ${data["token"]}");
+    //List<dynamic> data = responseBody["session"];
+    // print('shulambs');
+    // print('data  data :   $data');
+    // data.forEach((element) {
+    //   print(' representacao $element');
+    // });
+
+    // print("shulambs 2 ");
+
+    // data.forEach((element) {
+    //   print('comeco');
+    //   print('${element['address_history']}');
+    //   print('${element['homeAdsList']}');
+    //   //print('${element['status']}');
+    //   print('dados usuario :');
+    //   (element['session'] as List<dynamic>).map((campoUser) {
+    //     print('${campoUser['token']}');
+    //     print('${campoUser['status']}');
+    //     // print('${campoUser['photo']}');
+    //   }).toList();
+    // });
 
     // if (responseBody['session'].toString().contains('dados invalidos')) {
     //   print(' informando a session ${responseBody['session']}');
     // } else {
     //   print(responseBody['session']);
-    //   //_token = responseBody['sessionToken'];
+    // _token = responseBody['session'];
     //   notifyListeners();
     // }
     return Future.value();

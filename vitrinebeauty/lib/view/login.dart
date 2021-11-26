@@ -20,7 +20,12 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final Map<String, String> _authData = {'email': '', 'senha': ''};
+  final Map<String, String> _authData = {
+    'email': '',
+    'senha': '',
+    'lat': '',
+    'long': ''
+  };
   GlobalKey<FormState> _form = GlobalKey();
   bool _isLoading = false;
   double? latitude;
@@ -66,6 +71,7 @@ class _LoginState extends State<Login> {
     if (!_form.currentState!.validate()) {
       return;
     }
+
     _form.currentState!.save();
 
     setState(() {
@@ -73,7 +79,8 @@ class _LoginState extends State<Login> {
     });
     try {
       await _getCurrentUserLocation();
-      await auth.logar(_authData['email'], _authData['senha']);
+      await auth.logar(_authData['email'], _authData['senha'],
+          latitude.toString(), longitude.toString());
 
       _showErrorDialog('Ocorreu um erro inesperado!');
     } catch (error) {

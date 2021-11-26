@@ -166,14 +166,12 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Observer(
-                                    builder: (_) => Padding(
-                                      padding: EdgeInsets.only(
-                                          right: alturaIcone * 0.2),
-                                      child: Text(
-                                          //  '${listaServico.horaSelecionada.hour}:${listaServico.horaSelecionada.minute}',
-                                          '${listaServico.horaSelecionada.format(context)}'),
-                                    ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        right: alturaIcone * 0.2),
+                                    child: Text(
+                                        //  '${listaServico.horaSelecionada.hour}:${listaServico.horaSelecionada.minute}',
+                                        '${listaServico.horaSelecionada.format(context)}'),
                                   ),
                                   Icon(
                                     Icons.watch_later_outlined,
@@ -519,26 +517,6 @@ class _PerfilProfissionalState extends State<PerfilProfissional> {
                                       ? () {
                                           confirmacaoAgendamento(
                                               alturaPadding, alturaIcone);
-
-                                          // Navigator.push(
-                                          //   context,
-                                          //   MaterialPageRoute(
-                                          //     builder: (context) {
-                                          //       // return PerfilProfissional(
-                                          //       //     profissional['titulo']);
-                                          //       //return PerfilProfissional(profissional);
-                                          //       return Agendamento(
-                                          //           listaServico
-                                          //               .servicosSelecionados,
-                                          //           listaServico.valorTotal,
-                                          //           profissionalSelecionado!
-                                          //               .nome,
-                                          //           profissionalSelecionado!
-                                          //               .endereco);
-
-                                          //     },
-                                          //   ),
-                                          // );
                                         }
                                       : () {},
                                   child: Container(
