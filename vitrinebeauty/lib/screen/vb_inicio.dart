@@ -44,6 +44,7 @@ class _VitrineInicioState extends State<VitrineInicio> {
     double alturaIcone = altura * 0.1;
     double alturaPadding = altura * 0.4;
     List<CardProfissional> profissionais = Profissionais().profissionais;
+
     return Column(
       children: [
         Column(

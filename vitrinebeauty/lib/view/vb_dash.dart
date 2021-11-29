@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 //import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:vitrinebeauty/model/conta_usuario.dart';
+import 'package:vitrinebeauty/provider/autenticacao.dart';
 import 'package:vitrinebeauty/view/agenda_vb.dart';
 import 'package:vitrinebeauty/screen/busca_vb.dart';
 import 'package:vitrinebeauty/screen/editar_perfil.dart';
@@ -88,12 +91,6 @@ class _VBTabScrerenState extends State<VBTabScreren> {
     double alturaIcone = altura * 0.1;
     double alturaPadding = altura * 0.4;
 
-    //final layout = LayoutController();
-    //child: _screens[layout.posicaoLayoutAtual]['screen'],
-    // child: _screens[_selectedScreenIndex]['screen'],
-    // child: _selectedScreenIndex < 1
-    //     ? _screens[_selectedScreenIndex]['screen']
-    //     : _screens[layout.posicaoLayoutAtual]),
     return Scaffold(
       backgroundColor:
           _selectedScreenIndex < 3 ? Colors.white : HexColor('#260633'),
@@ -205,44 +202,6 @@ class _VBTabScrerenState extends State<VBTabScreren> {
                 )
           // VitrineInicio(),
           ),
-      //floatingActionButton: ,
-      // floatingActionButton: _selectedScreenIndex == 3
-      //     ? AnimatedOpacity(
-      //         child: Column(
-      //           // ignore: prefer_const_literals_to_create_immutables
-      //           children: [
-      //             Padding(
-      //               padding: EdgeInsets.symmetric(
-      //                 horizontal: 40,
-      //                 vertical: 20,
-      //               ),
-      //               child: FloatingActionButton(
-      //                 onPressed: () {
-      //                   // Navigator.of(context).pop();
-      //                   _backScreen();
-      //                 },
-      //                 backgroundColor: HexColor('#ffffff'),
-      //                 child: Icon(
-      //                   Icons.arrow_back_ios_new_rounded,
-      //                   color: HexColor('#ff1493'),
-      //                 ),
-      //               ),
-      //             ),
-      //             Text(
-      //               'voltar',
-      //               style: TextStyle(
-      //                 color: Colors.white,
-      //                 fontSize: 16,
-      //                 fontStyle: FontStyle.normal,
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //         duration: Duration(milliseconds: 100),
-      //         opacity: _fabIsVisible ? 1 : 0,
-      //       )
-      //     : null,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: <BoxShadow>[
@@ -257,9 +216,7 @@ class _VBTabScrerenState extends State<VBTabScreren> {
           iconSize: 30,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          //fixedColor: Colors.white,
-          //backgroundColor: Colors.white,
-          //selectedItemColor: Colors.white,
+
           onTap: _selectScreen,
           unselectedItemColor: Colors.white, // cor dos icone nao selecionados
           selectedItemColor:
@@ -354,11 +311,6 @@ class _VBTabScrerenState extends State<VBTabScreren> {
           Divider(
             height: alturaIcone * 0.2,
           ),
-          // DottedLine(
-          //   dashLength: 2,
-          //   dashColor: Colors.transparent,
-          //   dashGapColor: Colors.grey.shade500,
-          // ),
         ],
       ),
     );
@@ -403,7 +355,9 @@ class _VBTabScrerenState extends State<VBTabScreren> {
               ),
               //shape: ListTileTheme.shape(),
               onTap: () {
-                Navigator.of(context).pushNamed(rota);
+                titulo == 'Sair'
+                    ? Provider.of<Autenticacao>(context, listen: false).sair()
+                    : Navigator.of(context).pushNamed(rota);
               },
             ),
           ),
@@ -435,17 +389,3 @@ class _VBTabScrerenState extends State<VBTabScreren> {
     );
   }
 }
-
-/*
-SizedBox(
-  height: 150.0,
-  width: 300.0,
-  child: Carousel(
-    images: [
-      NetworkImage('https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg'),
-      NetworkImage('https://cdn-images-1.medium.com/max/2000/1*wnIEgP1gNMrK5gZU7QS0-A.jpeg'),
-      ExactAssetImage("assets/images/LaunchImage.jpg")
-    ],
-  )
-*/
-//Usar o Transform é bastante interessante mas preste atenção nas alterações da ação do aplicativo ao usa-lo

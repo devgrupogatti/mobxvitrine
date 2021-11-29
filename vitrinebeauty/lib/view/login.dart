@@ -26,6 +26,9 @@ class _LoginState extends State<Login> {
     'lat': '',
     'long': ''
   };
+
+  // ExactAssetImage('assets/images/loader_vb.gif');
+
   GlobalKey<FormState> _form = GlobalKey();
   bool _isLoading = false;
   double? latitude;
@@ -82,13 +85,14 @@ class _LoginState extends State<Login> {
       await auth.logar(_authData['email'], _authData['senha'],
           latitude.toString(), longitude.toString());
 
-      _showErrorDialog('Ocorreu um erro inesperado!');
+      // _showErrorDialog('Ocorreu um erro inesperado!');
     } catch (error) {
+      print('o erro eh : ' + error.toString());
       _showErrorDialog('Ocorreu um erro inesperado!');
     }
 
     setState(() {
-      _isLoading = false;
+      //_isLoading = false;
     });
   }
 
@@ -185,128 +189,138 @@ class _LoginState extends State<Login> {
         StyleButton().estiloBotao('#1800ff', '#ffffff', largura);
     //BotoesDart botao = BotoesDart();
     return Scaffold(
-      backgroundColor: HexColor('#260633'),
+      backgroundColor: _isLoading ? Colors.white : HexColor('#260633'),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: altura * 0.07),
-          child: Container(
-            //color: HexColor('#260633'),
-            width: double.infinity,
-            child: Form(
-              key: _form,
-              child: Column(
-                children: [
-                  Container(
-                    child: Image.asset(
-                      'assets/images/image_vb.png',
-                      width: largura * 0.6,
-                    ),
+          child: _isLoading
+              ? Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/images/espera.gif',
+                    width: largura * 0.6,
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
+                )
+              : Container(
+                  //color: HexColor('#260633'),
+                  width: double.infinity,
+                  child: Form(
+                    key: _form,
                     child: Column(
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            _campoLogin(
-                                altura * 0.5,
-                                largura,
-                                'E-mail:',
-                                TextInputType.emailAddress,
-                                false,
-                                'Email',
-                                'email'),
-                            _campoLogin(
-                                altura * 0.5,
-                                largura,
-                                'Senha:',
-                                TextInputType.text,
-                                true,
-                                'Digite sua senha',
-                                'senha'),
-                          ],
+                        Container(
+                          child: Image.asset(
+                            'assets/images/image_vb.png',
+                            width: largura * 0.6,
+                          ),
                         ),
-                        BotoesTexto.style(
-                          'Esqueceu sua senha ?',
-                          '#0dcaf0',
-                          15.0,
-                          EdgeInsets.only(left: largura * 0.05),
-                          FontStyle.italic,
-                          Alignment.centerLeft,
-                          context,
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            children: [
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  _campoLogin(
+                                      altura * 0.5,
+                                      largura,
+                                      'E-mail:',
+                                      TextInputType.emailAddress,
+                                      false,
+                                      'Email',
+                                      'email'),
+                                  _campoLogin(
+                                      altura * 0.5,
+                                      largura,
+                                      'Senha:',
+                                      TextInputType.text,
+                                      true,
+                                      'Digite sua senha',
+                                      'senha'),
+                                ],
+                              ),
+                              BotoesTexto.style(
+                                'Esqueceu sua senha ?',
+                                '#0dcaf0',
+                                15.0,
+                                EdgeInsets.only(left: largura * 0.05),
+                                FontStyle.italic,
+                                Alignment.centerLeft,
+                                context,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: largura * 0.08),
+                                child: ElevatedButton(
+                                  onPressed: _submit,
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: altura * 0.02),
+                                    alignment: Alignment.center,
+                                    width: double.infinity,
+                                    child: Text(
+                                      'Entrar',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                  style: botaoEntrar,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: altura * 0.07),
+                          child: Text(
+                            'Ou',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
                         ),
                         Padding(
                           padding:
-                              EdgeInsets.symmetric(horizontal: largura * 0.08),
-                          child: ElevatedButton(
-                            onPressed: _submit,
-                            child: Container(
-                              margin:
-                                  EdgeInsets.symmetric(vertical: altura * 0.02),
-                              alignment: Alignment.center,
-                              width: double.infinity,
-                              child: Text(
-                                'Entrar',
+                              EdgeInsets.symmetric(horizontal: largura * 0.1),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Não tem acesso?',
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  color: HexColor('#ffffff'),
+                                  fontSize: 16,
                                 ),
                               ),
-                            ),
-                            style: botaoEntrar,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: altura * 0.07),
-                    child: Text(
-                      'Ou',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: largura * 0.1),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Não tem acesso?',
-                          style: TextStyle(
-                            color: HexColor('#ffffff'),
-                            fontSize: 16,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Cadastro(),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Cadastro(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  'Cadastrar agora.',
+                                  style: TextStyle(
+                                    color: HexColor('#ffffff'),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
                               ),
-                            );
-                          },
-                          child: Text(
-                            'Cadastrar agora.',
-                            style: TextStyle(
-                              color: HexColor('#ffffff'),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
         ),
       ),
     );

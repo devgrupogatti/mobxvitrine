@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison, unused_import
 
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -10,10 +11,25 @@ class Autenticacao with ChangeNotifier {
   String? _userId;
   String? confirmacaoMensagem;
   String? _nomeUsuario;
+  String? _telefoneUsuario;
+  String? _emailUsuario;
+  Uint8List? _imagemUsuario;
   String? _codVinculo;
 
   String? get nomeUsuario {
     return isAuth ? _nomeUsuario : null;
+  }
+
+  String? get telefoneUsuario {
+    return isAuth ? _telefoneUsuario : null;
+  }
+
+  String? get emailUsuario {
+    return isAuth ? _emailUsuario : null;
+  }
+
+  Uint8List? get imagemUsuario {
+    return isAuth ? _imagemUsuario : null;
   }
 
   bool get isAuth {
@@ -103,7 +119,17 @@ class Autenticacao with ChangeNotifier {
     );
     print('Status ${resposta.statusCode}');
     final responseBody = json.decode(resposta.body);
+
+    print('resposta da requisicao : ${responseBody["session"]} ');
     print('${responseBody["session"]["token"]}');
+    print('${responseBody["session"]["userdata"]["phone"]}');
+
+    _nomeUsuario = responseBody["session"]["userdata"]["name"];
+    _telefoneUsuario = responseBody["session"]["userdata"]["phone"];
+    _emailUsuario = responseBody["session"]["userdata"]["email"];
+    _imagemUsuario = const Base64Decoder()
+        .convert(responseBody["session"]["userdata"]["photo"].toString());
+    _token = responseBody["session"]["token"].toString();
 
     //print(' conteudo : ${resposta.toString()}');
     //print('conteudo da resposta : ${resposta.body}');
@@ -143,8 +169,14 @@ class Autenticacao with ChangeNotifier {
     // _token = responseBody['session'];
     //   notifyListeners();
     // }
+    notifyListeners();
     return Future.value();
   }
 
   Future<void> alterarSenha(String email) async {}
+
+  void sair() {
+    _token = null;
+    notifyListeners();
+  }
 }

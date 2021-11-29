@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 
@@ -16,18 +18,35 @@ class CabecalhoInicio extends StatefulWidget {
 
 class _CabecalhoInicioState extends State<CabecalhoInicio> {
   final duvidaIcon = 'assets/images/faqIconHome.svg';
+  String? nomeUsuario;
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    setState(() {
+      nomeUsuario = Provider.of<ContaUsuario>(context).nome;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double largura = MediaQuery.of(context).size.width;
     double larguraIcone = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
+
     return Column(
       children: [
         Container(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Olá, Vera Doe',
+            'Olá, $nomeUsuario',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
         ),

@@ -1,10 +1,13 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_element, avoid_init_to_null, sized_box_for_whitespace, avoid_unnecessary_containers
 
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 
 class ApresentacaoPerfil extends StatefulWidget {
@@ -15,7 +18,20 @@ class ApresentacaoPerfil extends StatefulWidget {
 }
 
 class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
-  File? imagem = null;
+  Uint8List? imagem = null;
+  File? novaImagem;
+  String? nome;
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      ContaUsuario conta = Provider.of<ContaUsuario>(context);
+      print('dados do ususario ${conta.nome}');
+      nome = conta.nome;
+      imagem = conta.imagemPerfil;
+    });
+  }
 
   _takePicture() async {
     final ImagePicker _picker = ImagePicker();
@@ -28,7 +44,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
 
     if (imageFile == null) return;
     setState(() {
-      imagem = File(imageFile.path);
+      novaImagem = File(imageFile.path);
       //Provider.of<CadastroItem>(context, listen: false)
       //  .adicionarFoto(File(imageFile.path));
       //_storedImage = File(imageFile.path);
@@ -46,7 +62,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
 
     if (imageFile == null) return;
     setState(() {
-      imagem = File(imageFile.path);
+      novaImagem = File(imageFile.path);
       //Provider.of<CadastroItem>(context, listen: false)
       //  .adicionarFoto(File(imageFile.path));
       //_storedImage = File(imageFile.path);
@@ -123,19 +139,32 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: imagem != null
-                          ? Image.file(
-                              imagem!,
-                              height: largura * 0.45,
-                              width: largura * 0.45,
-                              fit: BoxFit.cover,
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(25),
+                                topRight: Radius.circular(25),
+                              ),
+                              child: Image.memory(
+                                imagem!,
+                                height: largura * 0.45,
+                                width: largura * 0.45,
+                                fit: BoxFit.cover,
+                              ),
                             )
-                          : Image.asset(
-                              'assets/images/cbimage.png',
-                              height: largura * 0.45,
-                              width: largura * 0.45,
-                              // scale: largura * 0.5,
-                              fit: BoxFit.cover,
-                            ),
+                          : novaImagem != null
+                              ? Image.file(
+                                  novaImagem!,
+                                  height: largura * 0.45,
+                                  width: largura * 0.45,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  'assets/images/cbimage.png',
+                                  height: largura * 0.45,
+                                  width: largura * 0.45,
+                                  // scale: largura * 0.5,
+                                  fit: BoxFit.cover,
+                                ),
                     ),
                   ),
                   Positioned(
@@ -172,7 +201,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
                 child: Container(
                   child: Text(
                     // 'Olá, Pedro Silva',
-                    'Dev Silva !',
+                    'Olá, $nome !',
                     style: TextStyle(
                         fontSize: 25,
                         color: Colors.white,
