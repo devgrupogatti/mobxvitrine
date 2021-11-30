@@ -1,5 +1,3 @@
-import 'package:vitrinebeauty/model/profissional.dart';
-
 class CardProfissional {
   int? id;
   String? titulo;

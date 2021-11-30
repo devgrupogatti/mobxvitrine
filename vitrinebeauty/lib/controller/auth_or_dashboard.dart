@@ -13,8 +13,8 @@ class AuthOrDash extends StatelessWidget {
   Widget build(BuildContext context) {
     // Auth autenticado=Provider.of<Autenticacao>(context);
     Autenticacao auth = Provider.of(context);
-    // return auth.isAuth ? VBTabScreren() : Login();
-    return auth.isAuth ? Login() : VBTabScreren();
+    return auth.isAuth ? VBTabScreren() : Login();
+    // return auth.isAuth ? Login() : VBTabScreren();
     //return auth.isAuth ? Login() : PerfilVB(); // VBTabScreren();
   }
 }

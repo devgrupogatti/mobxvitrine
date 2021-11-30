@@ -18,19 +18,12 @@ class ApresentacaoPerfil extends StatefulWidget {
 }
 
 class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
-  Uint8List? imagem = null;
+  Uint8List? imagem;
   File? novaImagem;
   String? nome;
   @override
   void initState() {
     super.initState();
-
-    setState(() {
-      ContaUsuario conta = Provider.of<ContaUsuario>(context);
-      print('dados do ususario ${conta.nome}');
-      nome = conta.nome;
-      imagem = conta.imagemPerfil;
-    });
   }
 
   _takePicture() async {
@@ -118,7 +111,10 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     // double larguraPadding = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
-    // double alturaPadding = altura * 0.4;
+    ContaUsuario conta = Provider.of<ContaUsuario>(context);
+    nome = conta.nome;
+    imagem = conta.imagemPerfil;
+
     return Container(
       // width: largura * 0.95,
       width: double.infinity,
@@ -138,33 +134,13 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: imagem != null
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(25),
-                                topRight: Radius.circular(25),
-                              ),
-                              child: Image.memory(
-                                imagem!,
-                                height: largura * 0.45,
-                                width: largura * 0.45,
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          : novaImagem != null
-                              ? Image.file(
-                                  novaImagem!,
-                                  height: largura * 0.45,
-                                  width: largura * 0.45,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset(
-                                  'assets/images/cbimage.png',
-                                  height: largura * 0.45,
-                                  width: largura * 0.45,
-                                  // scale: largura * 0.5,
-                                  fit: BoxFit.cover,
-                                ),
+                      child:
+                          //    _retornarImagemPerfil(imagem!, novaImagem!, largura),
+                          imagem != null
+                              ? _imagemApi(imagem, novaImagem, largura)
+                              : novaImagem != null
+                                  ? _imagemTirada(imagem, novaImagem, largura)
+                                  : _imagemTirada(imagem, novaImagem, largura),
                     ),
                   ),
                   Positioned(
@@ -215,53 +191,33 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
       ),
     );
   }
-}
-//assets/images/
- /*
 
-Container(
-                    onPressed: _acessarFoto,
-                    child: Image.asset(
-                      'assets/images/editWelcomePic.png',
-                      fit: BoxFit.cover,
-                      //scale: ,
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-
-
- Container(
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25),
-              topRight: Radius.circular(25),
-            ),
-            child: Image.asset(
-              'assets/images/cbimage.png',
-              height: altura * 0.3,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ],
-      ),
+  Image _imagemApi(Uint8List? imagem, File? novaImagem, double largura) {
+    print('selecionado');
+    return Image.memory(
+      imagem!,
+      height: largura * 0.45,
+      width: largura * 0.45,
+      fit: BoxFit.cover,
     );
- 
- 
- 
- ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25),
-                topRight: Radius.circular(25),
-              ),
-              child: Image.network(
-                GerenciadorImagem().converterbase64ParaFile().toString(),
-                height: altura * 0.3,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),*/
+  }
+
+  Image _imagemTirada(Uint8List? imagem, File? novaImagem, double largura) {
+    return Image.file(
+      novaImagem!,
+      height: largura * 0.45,
+      width: largura * 0.45,
+      fit: BoxFit.cover,
+    );
+  }
+
+  Image _imagemPadrao(Uint8List? imagem, File? novaImagem, double largura) {
+    return Image.asset(
+      'assets/images/cbimage.png',
+      height: largura * 0.45,
+      width: largura * 0.45,
+      // scale: largura * 0.5,
+      fit: BoxFit.cover,
+    );
+  }
+}

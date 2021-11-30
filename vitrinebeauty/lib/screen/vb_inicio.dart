@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/model/card_profissional.dart';
+import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/model/lista_profissionais.dart';
 import 'package:vitrinebeauty/model/profissional.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
@@ -44,7 +46,7 @@ class _VitrineInicioState extends State<VitrineInicio> {
     double alturaIcone = altura * 0.1;
     double alturaPadding = altura * 0.4;
     List<CardProfissional> profissionais = Profissionais().profissionais;
-
+    print('nome do usuario conta : ${Provider.of<ContaUsuario>(context).nome}');
     return Column(
       children: [
         Column(

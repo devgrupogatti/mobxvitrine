@@ -23,16 +23,17 @@ class _CabecalhoInicioState extends State<CabecalhoInicio> {
   void initState() {
     // TODO: implement initState
 
+    // print('nome do usuario cabeçaho: $nomeUsuario');
     super.initState();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    setState(() {
-      nomeUsuario = Provider.of<ContaUsuario>(context).nome;
-    });
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   setState(() {
+  //     nomeUsuario = Provider.of<ContaUsuario>(context).nome;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,7 @@ class _CabecalhoInicioState extends State<CabecalhoInicio> {
     double larguraIcone = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
+    String? nomeUsuario = Provider.of<ContaUsuario>(context).nome;
 
     return Column(
       children: [

@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:vitrinebeauty/model/servico.dart';
 
 class Profissional {

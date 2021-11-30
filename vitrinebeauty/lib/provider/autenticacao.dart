@@ -33,7 +33,7 @@ class Autenticacao with ChangeNotifier {
   }
 
   bool get isAuth {
-    return token == null;
+    return token != null;
   }
 
   String? get codVinculo {
@@ -122,13 +122,14 @@ class Autenticacao with ChangeNotifier {
 
     print('resposta da requisicao : ${responseBody["session"]} ');
     print('${responseBody["session"]["token"]}');
+    print(' qual eh o nome ${responseBody["session"]["userdata"]["name"]}');
     print('${responseBody["session"]["userdata"]["phone"]}');
 
     _nomeUsuario = responseBody["session"]["userdata"]["name"];
     _telefoneUsuario = responseBody["session"]["userdata"]["phone"];
     _emailUsuario = responseBody["session"]["userdata"]["email"];
     _imagemUsuario = const Base64Decoder()
-        .convert(responseBody["session"]["userdata"]["photo"].toString());
+        .convert(responseBody["session"]["userdata"]["photo"]);
     _token = responseBody["session"]["token"].toString();
 
     //print(' conteudo : ${resposta.toString()}');

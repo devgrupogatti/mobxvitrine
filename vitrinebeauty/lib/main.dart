@@ -18,7 +18,7 @@ import 'package:vitrinebeauty/screen/vb_central_ajuda.dart';
 import 'package:vitrinebeauty/screen/vb_endereco_cliente.dart';
 import 'package:vitrinebeauty/screen/vb_tela_configuracoes.dart';
 import 'package:vitrinebeauty/utils/app_routes.dart';
-import 'package:vitrinebeauty/utils/hexColor.dart';
+
 import 'package:vitrinebeauty/view/cadastro.dart';
 import 'package:vitrinebeauty/view/login.dart';
 
@@ -41,9 +41,9 @@ class VitrineBeauty extends StatelessWidget {
           create: (_) =>
               new ContaUsuario(nome: null, idUser: null, token: null),
           update: (ctx, auth, conta) => new ContaUsuario(
-            nome: auth.nomeUsuario,
-            idUser: auth.userId,
             token: auth.token,
+            idUser: auth.userId,
+            nome: auth.nomeUsuario,
             telefone: auth.telefoneUsuario,
             email: auth.emailUsuario,
             imagemPerfil: auth.imagemUsuario,
