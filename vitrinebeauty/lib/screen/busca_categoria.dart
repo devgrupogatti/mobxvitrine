@@ -204,17 +204,3 @@ class _BuscaCategoriaState extends State<BuscaCategoria> {
     );
   }
 }
-// Container(
-//                               alignment: Alignment.centerLeft,
-//                               width: alturaPadding * 0.1,
-//                               child: Row(
-//                                 children: [
-//                                   Icon(
-//                                     Icons.star,
-//                                     color: Colors.orange,
-//                                     size: 12,
-//                                   ),
-//                                   Text('${profissional.avaliacao}'),
-//                                 ],
-//                               ),
-//                             ),

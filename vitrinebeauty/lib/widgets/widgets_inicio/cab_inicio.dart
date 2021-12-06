@@ -41,14 +41,14 @@ class _CabecalhoInicioState extends State<CabecalhoInicio> {
     double larguraIcone = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
-    String? nomeUsuario = Provider.of<ContaUsuario>(context).nome;
+    ContaUsuario conta = Provider.of<ContaUsuario>(context);
 
     return Column(
       children: [
         Container(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Olá, $nomeUsuario',
+            'Olá, ${conta.nome}',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           ),
         ),
@@ -67,7 +67,7 @@ class _CabecalhoInicioState extends State<CabecalhoInicio> {
                 child: Container(
                   width: largura * 0.5,
                   child: Text(
-                    'Bravadžiluk, Sarajevo, Bósnia e Herzegovina',
+                    '${conta.enderecoUsuario}',
                     style: TextStyle(
                       fontSize: 13.0,
                       overflow: TextOverflow.ellipsis,

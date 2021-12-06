@@ -47,6 +47,7 @@ class VitrineBeauty extends StatelessWidget {
             telefone: auth.telefoneUsuario,
             email: auth.emailUsuario,
             imagemPerfil: auth.imagemUsuario,
+            enderecoUsuario: auth.enderecoUsuario,
           ),
         ),
         ChangeNotifierProxyProvider<Autenticacao, VitrineController>(

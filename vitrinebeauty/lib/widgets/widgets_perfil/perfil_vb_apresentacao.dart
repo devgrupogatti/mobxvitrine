@@ -21,6 +21,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
   Uint8List? imagem;
   File? novaImagem;
   String? nome;
+  bool _isTiked = false;
   @override
   void initState() {
     super.initState();
@@ -38,6 +39,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     if (imageFile == null) return;
     setState(() {
       novaImagem = File(imageFile.path);
+      _isTiked = true;
       //Provider.of<CadastroItem>(context, listen: false)
       //  .adicionarFoto(File(imageFile.path));
       //_storedImage = File(imageFile.path);
@@ -56,6 +58,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     if (imageFile == null) return;
     setState(() {
       novaImagem = File(imageFile.path);
+      _isTiked = true;
       //Provider.of<CadastroItem>(context, listen: false)
       //  .adicionarFoto(File(imageFile.path));
       //_storedImage = File(imageFile.path);
@@ -111,7 +114,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     // double larguraPadding = largura * 0.5;
     double altura = MediaQuery.of(context).size.height;
     double alturaIcone = altura * 0.1;
-    ContaUsuario conta = Provider.of<ContaUsuario>(context);
+    ContaUsuario? conta = Provider.of<ContaUsuario>(context);
     nome = conta.nome;
     imagem = conta.imagemPerfil;
 
@@ -133,15 +136,12 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child:
-                          //    _retornarImagemPerfil(imagem!, novaImagem!, largura),
-                          imagem != null
-                              ? _imagemApi(imagem, novaImagem, largura)
-                              : novaImagem != null
-                                  ? _imagemTirada(imagem, novaImagem, largura)
-                                  : _imagemTirada(imagem, novaImagem, largura),
-                    ),
+                        borderRadius: BorderRadius.circular(100),
+                        child: _isTiked
+                            ? _isTiked
+                                ? _imagemTirada(novaImagem!, largura)
+                                : _imagemApi(imagem!, largura)
+                            : _imagemApi(imagem!, largura)),
                   ),
                   Positioned(
                       left: alturaIcone * 1.9,
@@ -192,19 +192,18 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     );
   }
 
-  Image _imagemApi(Uint8List? imagem, File? novaImagem, double largura) {
-    print('selecionado');
+  Image _imagemApi(Uint8List imagem, double largura) {
     return Image.memory(
-      imagem!,
+      imagem,
       height: largura * 0.45,
       width: largura * 0.45,
       fit: BoxFit.cover,
     );
   }
 
-  Image _imagemTirada(Uint8List? imagem, File? novaImagem, double largura) {
+  Image _imagemTirada(File novaImagem, double largura) {
     return Image.file(
-      novaImagem!,
+      novaImagem,
       height: largura * 0.45,
       width: largura * 0.45,
       fit: BoxFit.cover,

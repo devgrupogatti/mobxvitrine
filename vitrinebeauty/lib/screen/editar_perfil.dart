@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_central_ajuda/titulo_campo.dart';
 import 'package:vitrinebeauty/widgets/widgets_editar_perfil/titulo.dart';
@@ -27,6 +29,9 @@ class _EditarPerfilState extends State<EditarPerfil> {
     double altura = MediaQuery.of(context).size.height;
     //double alturaIcone = altura * 0.1;
     double alturaPadding = altura * 0.4;
+
+    ContaUsuario conta = Provider.of<ContaUsuario>(context);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -61,13 +66,13 @@ class _EditarPerfilState extends State<EditarPerfil> {
                   child: Column(
                     children: [
                       _campoTexto(
-                          altura * 0.4, largura, 'Nome', dados['nome'], false),
+                          altura * 0.4, largura, 'Nome', conta.nome, false),
                       _campoTexto(
-                          altura * 0.4, largura, 'CPF', dados['cpf'], true),
-                      _campoTexto(altura * 0.4, largura, 'E-mail',
-                          dados['email'], true),
+                          altura * 0.4, largura, 'CPF', conta.token, true),
+                      _campoTexto(
+                          altura * 0.4, largura, 'E-mail', conta.email, true),
                       _campoTexto(altura * 0.4, largura, 'Celular',
-                          dados['celular'], false),
+                          conta.telefone, false),
                     ],
                   ),
                 ),

@@ -13,6 +13,7 @@ class ContaUsuario with ChangeNotifier {
   String? email;
   //List<Uint8List> imagens1 = [];
   Uint8List? imagemPerfil;
+  String? enderecoUsuario;
 
   ContaUsuario({
     this.token,
@@ -21,5 +22,6 @@ class ContaUsuario with ChangeNotifier {
     this.telefone,
     this.email,
     this.imagemPerfil,
+    this.enderecoUsuario,
   });
 }

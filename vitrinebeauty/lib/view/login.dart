@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:vitrinebeauty/provider/autenticacao.dart';
@@ -11,6 +12,7 @@ import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/utils/style_button.dart';
 import 'package:vitrinebeauty/view/cadastro.dart';
 import 'package:vitrinebeauty/widgets/botoes_texto.dart';
+import 'package:vitrinebeauty/widgets/widgets_central_ajuda/titulo_campo.dart';
 
 class Login extends StatefulWidget {
   //const Login({ Key? key }) : super(key: key);
@@ -116,68 +118,59 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _campoLogin(
-    double altura,
-    double largura,
-    String nomeCampo,
-    TextInputType tipoCampo,
-    bool ehsenha,
-    String hintText,
-    String tipoChave,
-  ) {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 2),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          alignment: Alignment.centerLeft,
-          child: Text(
-            nomeCampo,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Divider(
-          height: altura * 0.03,
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 2),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
-          width: largura * 0.9,
-          height: altura * 0.13,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: TextFormField(
-            obscureText: ehsenha ? true : false,
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 22,
-              overflow: TextOverflow.visible,
-            ),
-            keyboardType: tipoCampo,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              // ignore: unnecessary_new
-              hintStyle: new TextStyle(
-                color: Colors.grey[800],
-                fontStyle: FontStyle.italic,
-                fontSize: 16,
+  Widget _campoTexto(
+      double altura,
+      double largura,
+      String? nomeCampo,
+      TextInputType tipoCampo,
+      bool ehSenha,
+      String nomeLabel,
+      String nomeChave) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          vertical: altura * 0.02, horizontal: largura * 0.05),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin:
+                  EdgeInsets.only(bottom: altura * 0.02, left: altura * 0.05),
+              child: Text(
+                nomeCampo!,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              hintText: hintText,
-              fillColor: Colors.white70,
             ),
-            onSaved: (value) => _authData[tipoChave] = value!,
           ),
-        ),
-        Divider(
-          height: altura * 0.05,
-        ),
-      ],
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: altura * 0.02),
+            child: TextFormField(
+              obscureText: ehSenha ? true : false,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.fromLTRB(20, 10, 10, 0),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30.0),
+                  ),
+                ),
+                filled: true,
+                hintStyle: TextStyle(
+                    fontSize: 19,
+                    color: Colors.grey[800],
+                    fontStyle: FontStyle.italic),
+                hintText: nomeLabel,
+                fillColor: Colors.white,
+              ),
+              onSaved: (value) => _authData[nomeChave] = value!,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -223,7 +216,7 @@ class _LoginState extends State<Login> {
                                     MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  _campoLogin(
+                                  _campoTexto(
                                       altura * 0.5,
                                       largura,
                                       'E-mail:',
@@ -231,7 +224,7 @@ class _LoginState extends State<Login> {
                                       false,
                                       'Email',
                                       'email'),
-                                  _campoLogin(
+                                  _campoTexto(
                                       altura * 0.5,
                                       largura,
                                       'Senha:',

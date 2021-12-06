@@ -11,10 +11,15 @@ class Autenticacao with ChangeNotifier {
   String? _userId;
   String? confirmacaoMensagem;
   String? _nomeUsuario;
+  String? _enderecoUsuario;
   String? _telefoneUsuario;
   String? _emailUsuario;
   Uint8List? _imagemUsuario;
   String? _codVinculo;
+
+  String? get enderecoUsuario {
+    return isAuth ? _enderecoUsuario : null;
+  }
 
   String? get nomeUsuario {
     return isAuth ? _nomeUsuario : null;
@@ -97,12 +102,12 @@ class Autenticacao with ChangeNotifier {
     }
   }
 
-  Future<void> logar(String? email, String? senha, String? latitudade,
-      String? longitude) async {
+  Future<void> logar(
+      String? email, String? senha, String? latitude, String? longitude) async {
     var uri = Uri.parse("https://clients.vitrinebeauty.com/api/auth/signin");
     _token = null;
 
-    print('email : $email e senha : $senha');
+    print('email : $latitude e senha : $longitude');
 
     final resposta = await http.post(
       uri,
@@ -113,7 +118,7 @@ class Autenticacao with ChangeNotifier {
       body: json.encode({
         "email": email,
         "password": senha,
-        "lat": latitudade,
+        "lat": latitude,
         "long": longitude,
       }),
     );
@@ -122,7 +127,8 @@ class Autenticacao with ChangeNotifier {
 
     print('resposta da requisicao : ${responseBody["session"]} ');
     print('${responseBody["session"]["token"]}');
-    print(' qual eh o nome ${responseBody["session"]["userdata"]["name"]}');
+    print(
+        ' qual eh o endereco ${responseBody["userdata"]["formatted_address"]}');
     print('${responseBody["session"]["userdata"]["phone"]}');
 
     _nomeUsuario = responseBody["session"]["userdata"]["name"];
@@ -131,6 +137,7 @@ class Autenticacao with ChangeNotifier {
     _imagemUsuario = const Base64Decoder()
         .convert(responseBody["session"]["userdata"]["photo"]);
     _token = responseBody["session"]["token"].toString();
+    _enderecoUsuario = responseBody["session"]["userdata"]["formatted_address"];
 
     //print(' conteudo : ${resposta.toString()}');
     //print('conteudo da resposta : ${resposta.body}');

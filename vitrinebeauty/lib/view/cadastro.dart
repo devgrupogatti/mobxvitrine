@@ -107,105 +107,161 @@ class _CadastroState extends State<Cadastro> {
     );
   }
 
-  InputDecoration _estiloDoCampo(String hintText) {
-    return InputDecoration(
-      border: InputBorder.none,
-      hintStyle: new TextStyle(
-        color: Colors.grey[800],
-        fontStyle: FontStyle.italic,
-        fontSize: 16,
-      ),
-      hintText: hintText,
-      fillColor: Colors.white70,
-    );
-  }
+  // InputDecoration _estiloDoCampo(String hintText) {
+  //   return InputDecoration(
+  //     border: InputBorder.none,
+  //     hintStyle: new TextStyle(
+  //       color: Colors.grey[800],
+  //       fontStyle: FontStyle.italic,
+  //       fontSize: 16,
+  //     ),
+  //     hintText: hintText,
+  //     fillColor: Colors.white70,
+  //   );
+  // }
 
-  Widget _campoLogin(
-    double altura,
-    double largura,
-    String nomeCampo,
-    TextInputType tipoCampo,
-    bool ehsenha,
-    String hintText,
-    String tipoChave,
-  ) {
-    print('entrrou na funcao');
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 2),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          alignment: Alignment.centerLeft,
-          child: Text(
-            nomeCampo,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+  // Widget _campoLogin(
+  //   double altura,
+  //   double largura,
+  //   String nomeCampo,
+  //   TextInputType tipoCampo,
+  //   bool ehsenha,
+  //   String hintText,
+  //   String tipoChave,
+  // ) {
+  //   print('entrrou na funcao');
+  //   return Column(
+  //     children: [
+  //       Container(
+  //         margin: EdgeInsets.symmetric(vertical: 2),
+  //         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+  //         alignment: Alignment.centerLeft,
+  //         child: Text(
+  //           nomeCampo,
+  //           style: TextStyle(
+  //             color: Colors.white,
+  //             fontSize: 20,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //       ),
+  //       Divider(
+  //         height: altura * 0.03,
+  //       ),
+  //       Container(
+  //         margin: EdgeInsets.symmetric(vertical: 2),
+  //         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+  //         width: largura * 0.9,
+  //         height: altura * 0.13,
+  //         decoration: BoxDecoration(
+  //           color: Colors.white,
+  //           borderRadius: BorderRadius.circular(30),
+  //         ),
+  //         child: tipoChave.contains('senha')
+  //             ? TextFormField(
+  //                 obscureText: true,
+  //                 style: TextStyle(
+  //                   color: Colors.black87,
+  //                   fontSize: 22,
+  //                 ),
+  //                 keyboardType: tipoCampo,
+  //                 decoration: _estiloDoCampo(hintText),
+  //                 controller: _senhaController,
+  //                 onSaved: (value) => _authData[tipoChave] = value!,
+  //               )
+  //             : tipoChave.contains('confirmarSenha')
+  //                 ? TextFormField(
+  //                     obscureText: true,
+  //                     style: TextStyle(
+  //                       color: Colors.black87,
+  //                       fontSize: 22,
+  //                     ),
+  //                     keyboardType: tipoCampo,
+  //                     decoration: _estiloDoCampo(hintText),
+  //                     validator: (value) {
+  //                       if (value != _senhaController.text) {
+  //                         // ignore: avoid_print
+
+  //                         return 'Senhas diferentes';
+  //                       }
+  //                       return null;
+  //                     },
+  //                     onSaved: (value) => _authData[tipoChave] = value!,
+  //                   )
+  //                 : TextFormField(
+  //                     style: TextStyle(
+  //                       color: Colors.black87,
+  //                       fontSize: 22,
+  //                     ),
+  //                     keyboardType: tipoCampo,
+  //                     decoration: _estiloDoCampo(hintText),
+  //                     onSaved: (value) {
+  //                       print('entrrou na value $value');
+  //                       _authData[tipoChave] = value!;
+  //                       print(
+  //                           ' nome da chave $tipoChave e do seu valor ${_authData[tipoChave]}');
+  //                     }),
+  //       ),
+  //       Divider(
+  //         height: altura * 0.05,
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  Widget _campoTexto(
+      double altura,
+      double largura,
+      String? nomeCampo,
+      TextInputType tipoCampo,
+      bool ehSenha,
+      String nomeLabel,
+      String nomeChave) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          vertical: altura * 0.02, horizontal: largura * 0.05),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin:
+                  EdgeInsets.only(bottom: altura * 0.02, left: altura * 0.05),
+              child: Text(
+                nomeCampo!,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 19,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
-        ),
-        Divider(
-          height: altura * 0.03,
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 2),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 2),
-          width: largura * 0.9,
-          height: altura * 0.13,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: tipoChave.contains('senha')
-              ? TextFormField(
-                  obscureText: true,
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 22,
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: altura * 0.02),
+            child: TextFormField(
+              obscureText: ehSenha ? true : false,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.fromLTRB(20, 10, 10, 0),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30.0),
                   ),
-                  keyboardType: tipoCampo,
-                  decoration: _estiloDoCampo(hintText),
-                  controller: _senhaController,
-                  onSaved: (value) => _authData[tipoChave] = value!,
-                )
-              : tipoChave.contains('confirmarSenha')
-                  ? TextFormField(
-                      obscureText: true,
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 22,
-                      ),
-                      keyboardType: tipoCampo,
-                      decoration: _estiloDoCampo(hintText),
-                      validator: (value) {
-                        if (value != _senhaController.text) {
-                          // ignore: avoid_print
-
-                          return 'Senhas diferentes';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) => _authData[tipoChave] = value!,
-                    )
-                  : TextFormField(
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 22,
-                      ),
-                      keyboardType: tipoCampo,
-                      decoration: _estiloDoCampo(hintText),
-                      onSaved: (value) {
-                        print('entrrou na value $value');
-                        _authData[tipoChave] = value!;
-                        print(
-                            ' nome da chave $tipoChave e do seu valor ${_authData[tipoChave]}');
-                      }),
-        ),
-        Divider(
-          height: altura * 0.05,
-        ),
-      ],
+                ),
+                filled: true,
+                hintStyle: TextStyle(
+                    fontSize: 19,
+                    color: Colors.grey[800],
+                    fontStyle: FontStyle.italic),
+                hintText: nomeLabel,
+                fillColor: Colors.white,
+              ),
+              onSaved: (value) => _authData[nomeChave] = value!,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -245,13 +301,13 @@ class _CadastroState extends State<Cadastro> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _campoLogin(altura * 0.5, largura, 'Nome:',
+                      _campoTexto(altura * 0.5, largura, 'Nome:',
                           TextInputType.text, false, 'Nome', 'nome'),
-                      _campoLogin(altura * 0.5, largura, 'E-mail:',
+                      _campoTexto(altura * 0.5, largura, 'E-mail:',
                           TextInputType.emailAddress, false, 'Email', 'email'),
-                      _campoLogin(altura * 0.5, largura, 'Telefone:',
+                      _campoTexto(altura * 0.5, largura, 'Telefone:',
                           TextInputType.number, false, 'Telefone', 'telefone'),
-                      _campoLogin(
+                      _campoTexto(
                           altura * 0.5,
                           largura,
                           'Senha:',
@@ -259,7 +315,7 @@ class _CadastroState extends State<Cadastro> {
                           true,
                           'Digite sua senha',
                           'senha'),
-                      _campoLogin(
+                      _campoTexto(
                           altura * 0.5,
                           largura,
                           'Confirmar senha:',
@@ -268,6 +324,10 @@ class _CadastroState extends State<Cadastro> {
                           'Confirme sua senha',
                           'confirmarSenha'),
                     ],
+                  ),
+                  Divider(
+                    color: HexColor('#260633'),
+                    height: altura * 0.05,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: largura * 0.03),
