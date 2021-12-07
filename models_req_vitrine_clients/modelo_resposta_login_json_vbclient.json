@@ -1,0 +1,77 @@
+{
+  "session": {
+    "token": " ",
+    "status": " ",
+    "userdata": {
+      "id": " ",
+      "name": " ",
+      "photo": " ",
+      "email": " ",
+      "phone": " ",
+      "password": " ",
+      "lead": " ",
+      "createdOn": " ",
+      "updatedOn": " ",
+      "formatted_address": " "
+    }
+  },
+  "address_history": [
+    {
+      "id": "102",
+      "client": "245",
+      "formatted_address": " ",
+      "default": "0",
+      "createdOn": " ",
+      "updatedOn": " "
+    },
+    {
+        "id": "106",
+      "client": "245",
+      "formatted_address": " ",
+      "default": "0",
+      "createdOn": " ",
+      "updatedOn": " "
+    }
+  ],
+  "agenda" : [],
+  "homeAdsList":[
+      {
+          "id":" ",
+          "title":" ",
+          "photo":" ",
+          "accept_money":" ",
+          "accept_debt_card":" ",
+          "accept_credit_card":" ",
+          "accept_pix":" ",
+          "formatted_address":" ",
+          "description":null,
+          "type":" ",
+          "services": [
+              {
+                  "id":" ",
+                  "ads":" ",
+                  "title":" ",
+                  "price":" ",
+                  "duration":" ",
+                  "category":" ",
+                  "createdOn":" ",
+                  "updateOn":" "
+              },
+              {}
+          ],
+         "availability":[
+             {
+                "id":" ",
+                "ads":" ",
+                "day":" ",
+                "start":" ",
+                "end":" ",
+                "status":" ",
+                "updatedOn":" ",
+                "createdOn":" "
+             },
+             {}
+         ]
+      }
+    ]
+}

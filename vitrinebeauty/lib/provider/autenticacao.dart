@@ -139,44 +139,6 @@ class Autenticacao with ChangeNotifier {
     _token = responseBody["session"]["token"].toString();
     _enderecoUsuario = responseBody["session"]["userdata"]["formatted_address"];
 
-    //print(' conteudo : ${resposta.toString()}');
-    //print('conteudo da resposta : ${resposta.body}');
-    // List<dynamic> data = json.decode(resposta.body);
-    // final data = resposta.body[0];
-    //print(' Erro requisicao :  $responseBody');
-    //print('conteudo do token : ${responseBody["session"]["token"]}');
-    // print('chaves da resposta ${responseBody['session']}')
-    // print(' mensagem de resposta :  ${responseBody['session']}');
-    // print("shulambs  data : ${data["token"]}");
-    //List<dynamic> data = responseBody["session"];
-    // print('shulambs');
-    // print('data  data :   $data');
-    // data.forEach((element) {
-    //   print(' representacao $element');
-    // });
-
-    // print("shulambs 2 ");
-
-    // data.forEach((element) {
-    //   print('comeco');
-    //   print('${element['address_history']}');
-    //   print('${element['homeAdsList']}');
-    //   //print('${element['status']}');
-    //   print('dados usuario :');
-    //   (element['session'] as List<dynamic>).map((campoUser) {
-    //     print('${campoUser['token']}');
-    //     print('${campoUser['status']}');
-    //     // print('${campoUser['photo']}');
-    //   }).toList();
-    // });
-
-    // if (responseBody['session'].toString().contains('dados invalidos')) {
-    //   print(' informando a session ${responseBody['session']}');
-    // } else {
-    //   print(responseBody['session']);
-    // _token = responseBody['session'];
-    //   notifyListeners();
-    // }
     notifyListeners();
     return Future.value();
   }
