@@ -16,6 +16,7 @@ class Autenticacao with ChangeNotifier {
   String? _emailUsuario;
   Uint8List? _imagemUsuario;
   String? _codVinculo;
+  dynamic listProf;
 
   String? get enderecoUsuario {
     return isAuth ? _enderecoUsuario : null;
@@ -138,6 +139,9 @@ class Autenticacao with ChangeNotifier {
         .convert(responseBody["session"]["userdata"]["photo"]);
     _token = responseBody["session"]["token"].toString();
     _enderecoUsuario = responseBody["session"]["userdata"]["formatted_address"];
+    listProf = responseBody["homeAdsList"][1];
+    print('conteudo do listprof : $listProf');
+    print('conteudo do listprof 2 : ${responseBody["homeAdsList"]}');
 
     notifyListeners();
     return Future.value();

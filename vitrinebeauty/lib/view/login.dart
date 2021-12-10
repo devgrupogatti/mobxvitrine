@@ -53,7 +53,10 @@ class _LoginState extends State<Login> {
         actions: <Widget>[
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              setState(() {
+                Navigator.of(context).pop();
+                _isLoading = false;
+              });
             },
             child: Text('Fechar'),
           ),

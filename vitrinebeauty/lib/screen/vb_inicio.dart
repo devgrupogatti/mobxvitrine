@@ -9,6 +9,7 @@ import 'package:vitrinebeauty/model/card_profissional.dart';
 import 'package:vitrinebeauty/model/conta_usuario.dart';
 import 'package:vitrinebeauty/model/lista_profissionais.dart';
 import 'package:vitrinebeauty/model/profissional.dart';
+import 'package:vitrinebeauty/provider/provider_vitrine.dart';
 import 'package:vitrinebeauty/utils/hexColor.dart';
 import 'package:vitrinebeauty/widgets/widgets_inicio/cab_inicio.dart';
 import 'package:vitrinebeauty/widgets/widgets_inicio/carrosel_imagem.dart';
@@ -46,6 +47,7 @@ class _VitrineInicioState extends State<VitrineInicio> {
     double alturaIcone = altura * 0.1;
     double alturaPadding = altura * 0.4;
     List<CardProfissional> profissionais = Profissionais().profissionais;
+    Provider.of<VitrineController>(context).gerarLista();
     print('nome do usuario conta : ${Provider.of<ContaUsuario>(context).nome}');
     return Column(
       children: [

@@ -22,6 +22,8 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
   File? novaImagem;
   String? nome;
   bool _isTiked = false;
+  double? alturaTela;
+  double? larguraTela;
   @override
   void initState() {
     super.initState();
@@ -31,7 +33,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     final ImagePicker _picker = ImagePicker();
     PickedFile? imageFile = await _picker.getImage(
       source: ImageSource.camera,
-      maxWidth: 600,
+      maxWidth: larguraTela! * 0.8,
     );
 
     // aqui da pra pegar da galeria tambem
@@ -50,7 +52,7 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     final ImagePicker _picker = ImagePicker();
     PickedFile? imageFile = await _picker.getImage(
       source: ImageSource.gallery,
-      maxWidth: 600,
+      maxWidth: larguraTela! * 0.8,
     );
 
     // aqui da pra pegar da galeria tambem
@@ -112,8 +114,13 @@ class _ApresentacaoPerfilState extends State<ApresentacaoPerfil> {
     double largura = MediaQuery.of(context).size.width;
     // double larguraIcone = largura * 0.5;
     // double larguraPadding = largura * 0.5;
+    print('largura da tela de perfil : $largura');
+    larguraTela = largura;
     double altura = MediaQuery.of(context).size.height;
+    print('altura da tela de perfil : $altura');
+    alturaTela = altura;
     double alturaIcone = altura * 0.1;
+    print('altura da tela de perfil : $alturaIcone');
     ContaUsuario? conta = Provider.of<ContaUsuario>(context);
     nome = conta.nome;
     imagem = conta.imagemPerfil;

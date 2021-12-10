@@ -52,14 +52,10 @@ class VitrineBeauty extends StatelessWidget {
         ),
         ChangeNotifierProxyProvider<Autenticacao, VitrineController>(
           create: (_) => new VitrineController(
-            nome: null,
-            idUser: null,
-            token: null,
+            listProf: null,
           ),
           update: (ctx, auth, vitrineView) => new VitrineController(
-            nome: auth.nomeUsuario,
-            idUser: auth.userId,
-            token: auth.token,
+            listProf: auth.listProf,
           ),
         ),
         ChangeNotifierProvider(create: (context) => ReqProfissionais()),
